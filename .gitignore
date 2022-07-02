@@ -1,0 +1,6 @@
+.idea
+.mypy_cache
+.vscode
+python-scraping-master
+venv
+*.zip

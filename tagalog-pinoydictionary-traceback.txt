@@ -1,0 +1,694 @@
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+NameError: name 'Raise' is not defined
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:28 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:29 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:30 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:32 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:33 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:33 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:35 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:36 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:37 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:38 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:38 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:39 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:40 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:41 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:42 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:42 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:43 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:44 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:45 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:46 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:47 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:47 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:41:49 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition.get_text()).group(1)
+AttributeError: 'str' object has no attribute 'get_text'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:00 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:01 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:02 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:03 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:03 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\ssl_.py", line 402, in ssl_wrap_socket
+    context.load_verify_locations(ca_certs, ca_cert_dir, ca_cert_data)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:04 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:05 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:06 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:07 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:08 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:09 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:09 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:10 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:11 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 723, in urlopen
+    response = self.ResponseCls.from_httplib(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\response.py", line 600, in from_httplib
+    headers = HTTPHeaderDict(headers.items())
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\_collections.py", line 148, in __init__
+    self.extend(headers)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\_collections.py", line 254, in extend
+    self.add(key, value)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\_collections.py", line 215, in add
+    def add(self, key, val):
+  File "_pydevd_bundle/pydevd_cython.pyx", line 1366, in _pydevd_bundle.pydevd_cython.SafeCallWrapper.__call__
+  File "_pydevd_bundle/pydevd_cython.pyx", line 1667, in _pydevd_bundle.pydevd_cython.ThreadTracer.__call__
+  File "c:\Users\admin\.vscode\extensions\ms-python.python-2022.8.0\pythonFiles\lib\python\debugpy\_vendored\pydevd\_pydev_bundle\pydev_is_thread_alive.py", line 9, in is_thread_alive
+    def is_thread_alive(t):
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:13 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:13 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:14 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:15 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:16 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:17 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:42:18 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:43:10 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:43:11 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:43:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:43:13 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:43:14 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 94, in <module>
+    getContent(bs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 49, in getContent
+    conjugationsRaw = conjRegex.search(definition).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/06/25 09:44:07 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 93, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 22, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connection.py", line 358, in connect
+    self.sock = conn = self._new_conn()
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    sock.connect(sa)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 10:11:47 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 95, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 23, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 10:12:27 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 96, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 23, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/06/25 10:13:16 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 97, in <module>
+    bs = getPage(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\tagalog-pinoydictionary-scrape.py", line 24, in getPage
+    req = requests.get(url)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\ssl_.py", line 402, in ssl_wrap_socket
+    context.load_verify_locations(ca_certs, ca_cert_dir, ca_cert_data)
+KeyboardInterrupt

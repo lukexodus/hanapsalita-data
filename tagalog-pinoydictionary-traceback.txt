@@ -692,3 +692,26 @@ Traceback (most recent call last):
   File "c:\Users\admin\PycharmProjects\pyscrape\venv\lib\site-packages\urllib3\util\ssl_.py", line 402, in ssl_wrap_socket
     context.load_verify_locations(ca_certs, ca_cert_dir, ca_cert_data)
 KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:07:13 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''tagalog_words' WHERE word='aalug-alog'' at line 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 158, in pushToDatabases
+    if not wordAlreadyStored(cur, table, word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 89, in wordAlreadyStored
+    cur.execute("SELECT * FROM %s WHERE word=%s", (table, word))
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''tagalog_words' WHERE word='aalug-alog'' at line 1

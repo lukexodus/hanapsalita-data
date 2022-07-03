@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import mysql.connector
 
-from scrapeUtils import getStartings, getEndings, sortAlphabetically, wordAlreadyStored, pushToMySQL
+from scrapeUtils import getStartings, getEndings, getConstituents, sortAlphabetically, pushToDatabases
 
 searchUrl = "https://tagalog.pinoydictionary.com/list/"
 startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "x", "y", "z"]
@@ -19,10 +19,13 @@ with open("tagalog-pinoydictionary-progress.json") as file:
 if "lastRetrievedLetter" not in progressJson:
     progressJson["lastRetrievedLetter"] = 0
 lastRetrievedLetter = progressJson["lastRetrievedLetter"]
+if "lastRowId" not in progressJson:
+    progressJson["lastRowId"] = None
+lastRowId = progressJson["lastRowId"]
 
 with open("tagalog-pinoydictionary-words.json") as file:
-    data = json.loads(file.read())
-data.setdefault("data", {})
+    jsonDatabase = json.loads(file.read())
+jsonDatabase.setdefault("data", {})
 
 conn = mysql.connector.connect(host="127.0.0.1", user="root", password="", database="hanapsalita")
 cur = conn.cursor()
@@ -52,38 +55,35 @@ def getLastPageNum(bs):
 
 
 def getContent(bs):
+    global lastRowId
     conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
     searchResults = bs.select("div.word-group")
     for result in searchResults:
         category = "NC"  # Not Conjugation
         word = result.find("h2", class_="word-entry").get_text()
+        wordLength = len(word)
         if " " in word:
             continue
         else:
             alphaSorted, alphaSortedNoDuplicates = sortAlphabetically(word)
             startings, endings = getStartings(word), getEndings(word)
+            constituentsRows = getConstituents(word)
 
             definition = result.find("div", class_="definition").get_text()
             conjugationsRaw = conjRegex.search(definition)
+            lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+                            alphaSortedNoDuplicates, startings, endings, constituentsRows)
             if conjugationsRaw is not None:
                 conjugationsRawList = conjugationsRaw.group(1).split(",")
                 conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
-                if not wordAlreadyStored(cur, "tagalog_words", word):
-                    pushToMySQL(conn, cur, word, category, alphaSorted, alphaSortedNoDuplicates, startings, endings)
-                    print(word)
 
                 category = "C"  # Conjugation
                 for conjugation in conjugationsList:
                     alphaSorted, alphaSortedNoDuplicates = sortAlphabetically(conjugation)
                     startings, endings = getStartings(conjugation), getEndings(conjugation)
-                    if not wordAlreadyStored(cur, "tagalog_words", conjugation):
-                        pushToMySQL(conn, cur, word, category, alphaSorted, alphaSortedNoDuplicates, startings, endings)
-                        print(conjugation)
-
-            else:
-                if not wordAlreadyStored(cur, "tagalog_words", word):
-                    pushToMySQL(conn, cur, word, category, alphaSorted, alphaSortedNoDuplicates, startings, endings)
-                    print(word)
+                    constituentsRows = getConstituents(conjugation)
+                    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, conjugation, wordLength, category, alphaSorted,
+                                    alphaSortedNoDuplicates, startings, endings, constituentsRows)
 
 
 nextPageSoup = None
@@ -149,6 +149,15 @@ for i in range(lastRetrievedLetter, len(startLetters)):
         progressJson.setdefault(letter, {})
         progressJson[letter]["lastPage"] = lastPageNum
         progressJson[letter]["stoppedAt"] = stoppedAt
+        progressJson["lastRowId"] = lastRowId
         with open("tagalog-pinoydictionary-progress.json", "w") as file:
             file.write(json.dumps(progressJson))
         sys.exit()
+
+progressJson["lastRetrievedLetter"] = lastRetrievedLetter
+progressJson.setdefault(letter, {})
+progressJson[letter]["lastPage"] = lastPageNum
+progressJson[letter]["stoppedAt"] = stoppedAt
+progressJson["lastRowId"] = lastRowId
+with open("tagalog-pinoydictionary-progress.json", "w") as file:
+    file.write(json.dumps(progressJson))

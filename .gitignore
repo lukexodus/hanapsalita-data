@@ -3,4 +3,5 @@
 .vscode
 python-scraping-master
 venv
+__pycache__
 *.zip

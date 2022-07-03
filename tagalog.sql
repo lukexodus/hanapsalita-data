@@ -396,3 +396,15 @@ DESCRIBE tagalog_words;
 -- DROP TABLE tagalog_words;
 DESCRIBE tagalog_contain;
 -- DROP TABLE tagalog_contain;
+
+SELECT * FROM tagalog_words;
+SELECT * FROM tagalog_end;
+SELECT * FROM tagalog_start;
+SELECT * FROM tagalog_contain;
+
+TRUNCATE TABLE tagalog_end;
+TRUNCATE TABLE tagalog_start;
+TRUNCATE TABLE tagalog_contain;
+-- TRUNCATE TABLE tagalog_words;
+
+DELETE FROM tagalog_words WHERE id=0

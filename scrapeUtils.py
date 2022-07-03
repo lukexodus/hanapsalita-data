@@ -86,7 +86,7 @@ def buildColumnParametersPlaceholders(wordLength):
 
 # MySQL database-related functions
 def wordAlreadyStored(cur, table, word):
-    cur.execute(f"SELECT * FROM {table} WHERE word='{word}'")
+    cur.execute("SELECT * FROM " + table + " WHERE word=%s", (word,))
     cur.fetchall()
     rowCount = cur.rowcount
     if rowCount != 0:

@@ -715,3 +715,143 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
     raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
 mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''tagalog_words' WHERE word='aalug-alog'' at line 1
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:31:24 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 158, in pushToDatabases
+    if not wordAlreadyStored(cur, table, word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 89, in wordAlreadyStored
+    cur.execute(f"SELECT * FROM {table} WHERE word=%s", word)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 257, in execute
+    prepared = self._cnx.prepare_for_mysql(params)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 698, in prepare_for_mysql
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Could not process parameters: str(aalug-alog), it must be of type list, tuple or dict
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:33:25 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 158, in pushToDatabases
+    if not wordAlreadyStored(cur, table, word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 89, in wordAlreadyStored
+    cur.execute("SELECT * FROM " + table + " WHERE word=%s", word)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 257, in execute
+    prepared = self._cnx.prepare_for_mysql(params)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 698, in prepare_for_mysql
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Could not process parameters: str(aalug-alog), it must be of type list, tuple or dict
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:33:47 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 158, in pushToDatabases
+    if not wordAlreadyStored(cur, table, word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 89, in wordAlreadyStored
+    cur.execute("SELECT * FROM " + table + " WHERE word=%s", (word))
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 257, in execute
+    prepared = self._cnx.prepare_for_mysql(params)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 698, in prepare_for_mysql
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Could not process parameters: str(aalug-alog), it must be of type list, tuple or dict
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:34:39 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:47:11 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:54:54 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 104, in pushToMySQL
+    if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 104, in pushToMySQL
+    if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/03 21:55:43 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in <module>
+    getContent(bs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'

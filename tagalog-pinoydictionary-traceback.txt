@@ -855,3 +855,545 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
     raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
 mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 13:01:16 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 13:04:23 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 13:06:05 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 13:06:43 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 13:11:56 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 155, in <module>
+    lastPageNum = progressJson[letter]["lastPageNum"]
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 155, in <module>
+    lastPageNum = progressJson[letter]["lastPageNum"]
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 14:12:57 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 14:28:37 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 180, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 119, in pushToMySQL
+    raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
+Exception: `lastRowId + 1` and `lastRowId1` mismatch
+
+~~~~~~~~~~~~~~~ 2022/07/04 14:34:00 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 120, in pushToMySQL
+    raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
+Exception: `lastRowId + 1` and `lastRowId1` mismatch
+
+~~~~~~~~~~~~~~~ 2022/07/04 15:17:56 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 120, in pushToMySQL
+    raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 120, in pushToMySQL
+    raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 15:38:48 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '0' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 116, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '0' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/04 15:44:29 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 126, in pushToMySQL
+    cur.execute(tagalogStartSQL, tagalogStartValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+~~~~~~~~~~~~~~~ 2022/07/04 15:52:35 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 157, in pushToMySQL
+    raise Exception("`lastRowId3` and `lastRowId4` mismatch")
+Exception: `lastRowId3` and `lastRowId4` mismatch
+
+~~~~~~~~~~~~~~~ 2022/07/04 15:58:08 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 126, in pushToMySQL
+    cur.execute(tagalogStartSQL, tagalogStartValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:00:50 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 126, in pushToMySQL
+    cur.execute(tagalogStartSQL, tagalogStartValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`hanapsalita`.`tagalog_start`, CONSTRAINT `tagalog_start_id_fk` FOREIGN KEY (`id`) REFERENCES `tagalog_words` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:09:33 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 184, in pushToDatabases
+    alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 157, in pushToMySQL
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 157, in pushToMySQL
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:21:05 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 182, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 125, in pushToMySQL
+    tagalogStartValues = [lastRowId1] + startings
+TypeError: can only concatenate list (not "tuple") to list
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:24:31 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\packages\six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 139, in <module>
+    bs = getPage(searchUrl + letter)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 38, in getPage
+    req = requests.get(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 547, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:27:11 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 182, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 130, in pushToMySQL
+    raise Exception("`lastRowId1` and `lastRowId2` mismatch")
+Exception: `lastRowId1` and `lastRowId2` mismatch
+
+~~~~~~~~~~~~~~~ 2022/07/04 16:30:22 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 102, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 182, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 118, in pushToMySQL
+    print(f"lastRowId1 = {lastRowId1}")
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 118, in pushToMySQL
+    print(f"lastRowId1 = {lastRowId1}")
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 18:28:19 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 66, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 164, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 117, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, conjugation,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 182, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 126, in pushToMySQL
+    cur.execute(tagalogStartSQL, tagalogStartValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 263, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 68, in __call__
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+
+~~~~~~~~~~~~~~~ 2022/07/04 19:05:03 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 165, in <module>
+    lastRowId = getContent(bs, lastRowId)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 103, in getContent
+    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, wordsJsonFilename, lastRowId, word, wordLength,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 186, in pushToDatabases
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 160, in pushToMySQL
+    jsonDatabase["data"][word]["alpha_sorted_no_duplicates"] = alpha_sorted_no_duplicates
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 160, in pushToMySQL
+    jsonDatabase["data"][word]["alpha_sorted_no_duplicates"] = alpha_sorted_no_duplicates
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 19:14:50 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 165, in <module>
+    bs = getPage(url)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 99, in getContent
+    if not wordAlreadyStored(cur, "tagalog_words", word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 43, in getConstituents
+    wordLength = len(word)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 43, in getConstituents
+    wordLength = len(word)
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 20:39:36 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 153, in <module>
+    if not lastPageNumRetrieved:  # if `bs` is already retrieved or not (i.e. defined or not)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 153, in <module>
+    if not lastPageNumRetrieved:  # if `bs` is already retrieved or not (i.e. defined or not)
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/04 20:52:03 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 157, in <module>
+    bs = getPage(url)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 40, in getPage
+    req = requests.get(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connection.py", line 414, in connect
+    self.sock = ssl_wrap_socket(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+KeyboardInterrupt

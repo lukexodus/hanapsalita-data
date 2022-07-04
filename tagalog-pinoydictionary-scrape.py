@@ -9,16 +9,20 @@ import requests
 from bs4 import BeautifulSoup
 import mysql.connector
 
-from scrapeUtils import getStartings, getEndings, getConstituents, sortAlphabetically, pushToDatabases
+from scrapeUtils import getStartings, getEndings, getConstituents, sortAlphabetically, pushToDatabases,\
+    wordAlreadyStored, getInfoFromWord
 
 searchUrl = "https://tagalog.pinoydictionary.com/list/"
-startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "x", "y", "z"]
+startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
+                "n", "o", "p", "r", "s", "t", "u", "w", "x", "y", "z"]
+progressJsonFilename = "tagalog-pinoydictionary-progress.json"
+wordsJsonFilename = "tagalog-pinoydictionary-words.json"
 
-with open("tagalog-pinoydictionary-progress.json") as file:
+with open(progressJsonFilename) as file:
     progressJson = json.loads(file.read())
-if "lastRetrievedLetter" not in progressJson:
-    progressJson["lastRetrievedLetter"] = 0
-lastRetrievedLetter = progressJson["lastRetrievedLetter"]
+if "lastRetrievedLetterIndex" not in progressJson:
+    progressJson["lastRetrievedLetterIndex"] = 0
+lastRetrievedLetterIndex = progressJson["lastRetrievedLetterIndex"]
 if "lastRowId" not in progressJson:
     progressJson["lastRowId"] = None
 lastRowId = progressJson["lastRowId"]
@@ -54,110 +58,122 @@ def getLastPageNum(bs):
     return getNumFromLink(url)
 
 
-def getContent(bs):
-    global lastRowId
-    conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
+def getNextLetterPageInfo(startLetters, letter, searchUrl):
+    nextLetterIndex = startLetters.index(letter) + 1
+    lastRetrievedLetterIndex = nextLetterIndex
+    nextLetter = startLetters[nextLetterIndex]
+    nextPageSoup = getPage(searchUrl + letter)
+    lastPageNum = getLastPageNum(nextPageSoup)
+    if lastPageNum is None:
+        lastPageNum = 1
+
+    return lastRetrievedLetterIndex, nextLetter, nextPageSoup, lastPageNum
+
+
+# progressJson file-related function
+def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId):
+    progressJson["lastRetrievedLetterIndex"] = lastRetrievedLetterIndex
+    progressJson.setdefault(letter, {})
+    progressJson[letter]["lastPageNum"] = lastPageNum
+    progressJson[letter]["stoppedAt"] = stoppedAt
+    progressJson["lastRowId"] = lastRowId
+    with open(progressJsonFilename, "w") as file:
+        file.write(json.dumps(progressJson))
+
+
+# main function
+def getContent(bs, lastRowId):
     searchResults = bs.select("div.word-group")
-    for result in searchResults:
-        category = "NC"  # Not Conjugation
+    for result in searchResults: # Not Conjugation
         word = result.find("h2", class_="word-entry").get_text()
-        wordLength = len(word)
+
         if " " in word:
             continue
         else:
-            alphaSorted, alphaSortedNoDuplicates = sortAlphabetically(word)
-            startings, endings = getStartings(word), getEndings(word)
-            constituentsRows = getConstituents(word)
-
+            conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
             definition = result.find("div", class_="definition").get_text()
             conjugationsRaw = conjRegex.search(definition)
-            lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
-                            alphaSortedNoDuplicates, startings, endings, constituentsRows)
+
+            category = "NC"
+            if not wordAlreadyStored(cur, "tagalog_words", word):
+                wordInfo = getInfoFromWord(word)
+                variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category]
+                variablesToBePushed.extend(wordInfo)
+                lastRowId = pushToDatabases(*variablesToBePushed)
             if conjugationsRaw is not None:
                 conjugationsRawList = conjugationsRaw.group(1).split(",")
                 conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
 
                 category = "C"  # Conjugation
                 for conjugation in conjugationsList:
-                    alphaSorted, alphaSortedNoDuplicates = sortAlphabetically(conjugation)
-                    startings, endings = getStartings(conjugation), getEndings(conjugation)
-                    constituentsRows = getConstituents(conjugation)
-                    lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, conjugation, wordLength, category, alphaSorted,
-                                    alphaSortedNoDuplicates, startings, endings, constituentsRows)
+                    if not wordAlreadyStored(cur, "tagalog_words", conjugation):
+                        wordInfo = getInfoFromWord(conjugation)
+                        variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, conjugation,
+                                               category]
+                        variablesToBePushed.extend(wordInfo)
+                        lastRowId = pushToDatabases(*variablesToBePushed)
+    return lastRowId
 
 
+# initialize/retrieve variables to avoid letting them be undefined
+letter = startLetters[lastRetrievedLetterIndex]
+lastPageNum = 1
+stoppedAt = 1
 nextPageSoup = None
-for i in range(lastRetrievedLetter, len(startLetters)):
+
+for i in range(lastRetrievedLetterIndex, len(startLetters)):
     try:
-        letter = startLetters[lastRetrievedLetter]
-        if letter not in progressJson:
+        if letter not in progressJson:  # if it's the first time to scrape the words of the specified letter
             lastPageNumRetrieved = False
+
             if nextPageSoup is not None:
                 bs = nextPageSoup
                 nextPageSoup = None
             else:
                 bs = getPage(searchUrl + letter)
+
             lastPageNum = getLastPageNum(bs)
             stoppedAt = 1
-            if lastPageNum is None:
-                getContent(bs)
-                # ----- Duplicate
+            if lastPageNum is None:  # if the words of the specified letter are only in one page
+                lastRowId = getContent(bs, lastRowId)
+                # prepares to jump at the next letter
                 progressJson[letter]["stoppedAt"] = stoppedAt
-                nextLetterIndex = startLetters.index(letter) + 1
-                lastRetrievedLetter = nextLetterIndex
-                letter = startLetters[nextLetterIndex]
-                stoppedAt = 1
-                nextPageSoup = getPage(searchUrl + letter)
-                lastPageNum = getLastPageNum(nextPageSoup)
-                # -----
-                if lastPageNum is None:
-                    lastPageNum = 1
+                lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
+                    getNextLetterPageInfo(startLetters, letter, searchUrl)
+                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt,
+                                          lastRowId)
                 continue
-        else:
+
+        else:  # retrieve progress information
             lastPageNumRetrieved = True
-            lastPageNum = progressJson[letter]["lastPage"]
+            lastPageNum = progressJson[letter]["lastPageNum"]
             stoppedAt = progressJson[letter]["stoppedAt"]
-        for pageNum in range(stoppedAt, lastPageNum + 1):
-            if not lastPageNumRetrieved:
+
+        for pageNum in range(stoppedAt, lastPageNum + 1):  # continue at where the program left at the previous run
+            if not lastPageNumRetrieved:  # if `bs` is already retrieved or not (i.e. defined or not)
                 bs = bs
-                lastPageNumRetrieved = True
             else:
                 url = f'{searchUrl}{letter}/{pageNum if pageNum > 1 else ""}/'
                 bs = getPage(url)
-            getContent(bs)
-            if stoppedAt == lastPageNum:
-                # ----- Duplicate
+            lastRowId = getContent(bs, lastRowId)
+
+            if stoppedAt == lastPageNum:  # if arrived at the last page
+                # prepares to jump at the next letter
                 progressJson[letter]["stoppedAt"] = stoppedAt
-                nextLetterIndex = startLetters.index(letter) + 1
-                lastRetrievedLetter = nextLetterIndex
-                letter = startLetters[nextLetterIndex]
-                stoppedAt = 1
-                nextPageSoup = getPage(searchUrl + letter)
-                lastPageNum = getLastPageNum(nextPageSoup)
-                # -----
-                if lastPageNum is None:
-                    lastPageNum = 1
+                lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
+                    getNextLetterPageInfo(startLetters, letter, searchUrl)
+
             else:
                 stoppedAt += 1
+            storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
     except:
         with open("tagalog-pinoydictionary-traceback.txt", "a") as file:
             file.write(f'\n{"~" * 15} {datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")} {"~" * 15}\n')
             file.write(traceback.format_exc())
         print(traceback.format_exc())
     finally:
-        progressJson["lastRetrievedLetter"] = lastRetrievedLetter
-        progressJson.setdefault(letter, {})
-        progressJson[letter]["lastPage"] = lastPageNum
-        progressJson[letter]["stoppedAt"] = stoppedAt
-        progressJson["lastRowId"] = lastRowId
-        with open("tagalog-pinoydictionary-progress.json", "w") as file:
-            file.write(json.dumps(progressJson))
+        storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
         sys.exit()
 
-progressJson["lastRetrievedLetter"] = lastRetrievedLetter
-progressJson.setdefault(letter, {})
-progressJson[letter]["lastPage"] = lastPageNum
-progressJson[letter]["stoppedAt"] = stoppedAt
-progressJson["lastRowId"] = lastRowId
-with open("tagalog-pinoydictionary-progress.json", "w") as file:
-    file.write(json.dumps(progressJson))
+storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+print('Program finished.')

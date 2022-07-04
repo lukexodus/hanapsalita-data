@@ -1,15 +1,19 @@
 CREATE TABLE tagalog_words (
-id SMALLINT UNSIGNED PRIMARY KEY,
+id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 word VARCHAR(60) NOT NULL UNIQUE,
 length TINYINT UNSIGNED NOT NULL,
 category VARCHAR(3) NOT NULL,
-alpha_sorted VARCHAR(60) NOT NULL,
-alpha_sorted_no_duplicates VARCHAR(60) NOT NULL,
+alpha_sorted_without_dashes VARCHAR(60) NOT NULL,
+alpha_sorted VARCHAR(60) DEFAULT NULL,
+alpha_sorted_no_duplicates_without_dashes VARCHAR(60) NOT NULL,
+alpha_sorted_no_duplicates VARCHAR(60) DEFAULT NULL,
 
 INDEX (word),
 INDEX (length),
 INDEX (category(2)),
+INDEX (alpha_sorted_without_dashes),
 INDEX (alpha_sorted),
+INDEX (alpha_sorted_no_duplicates_without_dashes),
 INDEX (alpha_sorted_no_duplicates)
 );
 
@@ -389,22 +393,24 @@ CONSTRAINT tagalog_contain_id_fk FOREIGN KEY(id) REFERENCES tagalog_words(id) ON
 );
 
 DESCRIBE tagalog_start;
--- DROP TABLE tagalog_start;
 DESCRIBE tagalog_end;
--- DROP TABLE tagalog_end;
 DESCRIBE tagalog_words;
--- DROP TABLE tagalog_words;
 DESCRIBE tagalog_contain;
--- DROP TABLE tagalog_contain;
+DROP TABLE tagalog_start;
+DROP TABLE tagalog_end;
+DROP TABLE tagalog_contain;
+DROP TABLE tagalog_words;
 
 SELECT * FROM tagalog_words;
-SELECT * FROM tagalog_end;
 SELECT * FROM tagalog_start;
+SELECT * FROM tagalog_end;
 SELECT * FROM tagalog_contain;
 
 TRUNCATE TABLE tagalog_end;
 TRUNCATE TABLE tagalog_start;
 TRUNCATE TABLE tagalog_contain;
--- TRUNCATE TABLE tagalog_words;
+SET FOREIGN_KEY_CHECKS=0; 
+TRUNCATE TABLE tagalog_words;
+SET FOREIGN_KEY_CHECKS=1; 
 
-DELETE FROM tagalog_words WHERE id=0
+DELETE FROM tagalog_words WHERE id=2

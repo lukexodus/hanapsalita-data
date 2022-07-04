@@ -1,16 +1,18 @@
+import json
+
 # string functions
 def getStartings(word):
     startings = []
     for i in range(len(word)):
         startings.append(word[:i+1])
-    return tuple(startings)
+    return startings
 
 
 def getEndings(word):
     endings = []
     for i in range(len(word) -1, -1, -1):
         endings.append(word[i:len(word)])
-    return tuple(endings)
+    return endings
 
 
 """
@@ -55,17 +57,24 @@ def getConstituents(word):
     return constituentsColumns
 
 
-def sortAlphabetically(word):
+def sortAlphabetically(word, withDashes):
     wordList = list(word)
     wordList.sort()
     alphaSorted = "".join(wordList)
+    alphaSortedWithoutDashes = "".join([letter for letter in wordList if letter != "-"])
     alphaSortedNoDuplicates = ""
+    alphaSortedNoDuplicatesWithoutDashes = ""
     i = 0
     while wordList:
         if wordList[0] not in alphaSortedNoDuplicates:
             alphaSortedNoDuplicates += wordList[0]
+            if wordList[0] != "-":
+                alphaSortedNoDuplicatesWithoutDashes += wordList[0]
         wordList.pop(0)
-    return alphaSorted, alphaSortedNoDuplicates
+    if withDashes:
+        return alphaSorted, alphaSortedNoDuplicates, alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes
+    else:
+        return alphaSorted, alphaSortedNoDuplicates, None, None
 
 
 # SQL queries-related functions
@@ -95,32 +104,33 @@ def wordAlreadyStored(cur, table, word):
 
 
 # main functions
-def pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows):
-    tagalogWordsSQL = \
-        "INSERT INTO tagalog_words (word, length, category, alpha_sorted, alpha_sorted_no_duplicates) VALUES (%s, %s, %s, %s, %s)"
-    tagalogWordsValues = (word, wordLength, category, alphaSorted, alphaSortedNoDuplicates)
+def pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes, alphaSorted,
+                alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates, startings, endings, constituentsRows):
+    if not withDashes:
+        tagalogWordsSQL = \
+            "INSERT INTO tagalog_words (word, length, category, alpha_sorted_without_dashes, alpha_sorted_no_duplicates_without_dashes) VALUES (%s, %s, %s, %s, %s)"
+        tagalogWordsValues = (word, wordLength, category, alphaSorted, alphaSortedNoDuplicates)
+    else:
+        tagalogWordsSQL = \
+            "INSERT INTO tagalog_words (word, length, category, alpha_sorted_without_dashes, alpha_sorted, alpha_sorted_no_duplicates_without_dashes, alpha_sorted_no_duplicates) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        tagalogWordsValues = (word, wordLength, category, alphaSortedWithoutDashes, alphaSorted,
+                              alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates)
     cur.execute(tagalogWordsSQL, tagalogWordsValues)
     lastRowId1 = cur.lastrowid
-    if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
-        raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
+    # if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
+    #     raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
     conn.commit()
 
     tagalogStartSQL = \
-        f"INSERT INTO tagalog_start ({buildColumnParameters(wordLength, 's')}) VALUES ({buildColumnParametersPlaceholders(wordLength)})"
-    tagalogStartValues = startings
+        f"INSERT INTO tagalog_start (id, {buildColumnParameters(wordLength, 's')}) VALUES ({buildColumnParametersPlaceholders(wordLength + 1)})"
+    tagalogStartValues = [lastRowId1] + startings
     cur.execute(tagalogStartSQL, tagalogStartValues)
-    lastRowId2 = cur.lastrowid
-    if lastRowId1 != lastRowId2:
-        raise Exception("`lastRowId1` and `lastRowId2` mismatch")
     conn.commit()
 
     tagalogEndSQL = \
-        f"INSERT INTO tagalog_end ({buildColumnParameters(wordLength, 'e')}) VALUES ({buildColumnParametersPlaceholders(wordLength)})"
-    tagalogEndValues = endings
+        f"INSERT INTO tagalog_end (id, {buildColumnParameters(wordLength, 'e')}) VALUES ({buildColumnParametersPlaceholders(wordLength + 1)})"
+    tagalogEndValues = [lastRowId1] + endings
     cur.execute(tagalogEndSQL, tagalogEndValues)
-    lastRowId3 = cur.lastrowid
-    if lastRowId2 != lastRowId3:
-        raise Exception("`lastRowId2` and `lastRowId3` mismatch")
     conn.commit()
 
     for i, constituentsRow, in enumerate(constituentsRows):
@@ -134,31 +144,49 @@ def pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, a
         tagalogConstituentsRowValues = tuple(tagalogConstituentsRowValues)
 
         cur.execute(tagalogContainSQL, tagalogConstituentsRowValues)
-        lastRowId4 = cur.lastrowid
-        if lastRowId3 != lastRowId4:
-            raise Exception("`lastRowId3` and `lastRowId4` mismatch")
         conn.commit()
 
     return lastRowId1
 
 
-def pushToJSON(jsonDatabase, lastRowId, word, wordLength, category, alpha_sorted, alpha_sorted_no_duplicates, startings, endings, constituentsRows):
+def pushToJSON(jsonDatabase, wordsJsonFilename, lastRowId, word, category, wordLength, withDashes,
+                    alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,
+                    alphaSortedNoDuplicates, startings, endings, constituentsRows):
     jsonDatabase["data"].setdefault(word, {})
     jsonDatabase["data"][word]["id"] = lastRowId
     jsonDatabase["data"][word]["length"] = wordLength
     jsonDatabase["data"][word]["category"] = category
-    jsonDatabase["data"][word]["alpha_sorted"] = alpha_sorted
-    jsonDatabase["data"][word]["alpha_sorted_no_duplicates"] = alpha_sorted_no_duplicates
+    jsonDatabase["data"][word]["withDashes"] = withDashes
+    jsonDatabase["data"][word]["alphaSortedWithoutDashes"] = alphaSortedWithoutDashes
+    jsonDatabase["data"][word]["alpha_sorted"] = alphaSorted
+    jsonDatabase["data"][word]["alphaSortedNoDuplicatesWithoutDashes"] = alphaSortedNoDuplicatesWithoutDashes
+    jsonDatabase["data"][word]["alpha_sorted_no_duplicates"] = alphaSortedNoDuplicates
     jsonDatabase["data"][word]["startings"] = startings
     jsonDatabase["data"][word]["endings"] = endings
     jsonDatabase["data"][word]["constituentsRows"] = constituentsRows
+    with open(wordsJsonFilename, "w") as file:
+        file.write(json.dumps(jsonDatabase))
 
 
-def pushToDatabases(conn, cur, table, jsonDatabase, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows):
-    if not wordAlreadyStored(cur, table, word):
-        lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
-        pushToJSON(jsonDatabase, lastRowID, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings,
-                   endings, constituentsRows)
-        print(word)
-        return lastRowID
-    return lastRowId
+def pushToDatabases(conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category, wordLength, withDashes,
+                    alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,
+                    alphaSortedNoDuplicates, startings, endings, constituentsRows):
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes,
+                            alphaSorted, alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates, startings,
+                            endings, constituentsRows)
+    pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, wordLength, withDashes,
+               alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates,
+               startings, endings, constituentsRows)
+    print(word)
+    return lastRowID
+
+
+def getInfoFromWord(word):
+    wordLength = len(word)
+    withDashes = True if "-" in word else False
+    alphaSorted, alphaSortedNoDuplicates, alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes = \
+        sortAlphabetically(word, withDashes)
+    startings, endings = getStartings(word), getEndings(word)
+    constituentsRows = getConstituents(word)
+    return wordLength, withDashes, alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,\
+        alphaSortedNoDuplicates, startings, endings, constituentsRows

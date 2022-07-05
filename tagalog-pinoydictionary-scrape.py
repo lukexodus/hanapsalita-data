@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import mysql.connector
 
 from scrapeUtils import getStartings, getEndings, getConstituents, sortAlphabetically, pushToDatabases,\
-    wordAlreadyStored, getInfoFromWord
+    wordAlreadyStored, getInfoFromWord, wordIsAmbiguous
 
 searchUrl = "https://tagalog.pinoydictionary.com/list/"
 startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
@@ -92,19 +92,19 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
     for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
 
-        if " " in word:
+        if " " in word or "." in word:
             continue
         else:
-            conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
-            definition = result.find("div", class_="definition").get_text()
-            conjugationsRaw = conjRegex.search(definition)
-
             category = "NC"  # Not Conjugation
             if not wordAlreadyStored(cur, "tagalog_words", word):
                 wordInfo = getInfoFromWord(word)
                 variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category]
                 variablesToBePushed.extend(wordInfo)
                 lastRowId = pushToDatabases(*variablesToBePushed)
+
+            conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
+            definition = result.find("div", class_="definition").get_text()
+            conjugationsRaw = conjRegex.search(definition)
             if conjugationsRaw is not None:
                 conjugationsRawList = conjugationsRaw.group(1).split(",")
                 conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]

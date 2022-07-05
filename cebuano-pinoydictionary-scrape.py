@@ -98,14 +98,14 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
         if " " in word:
             continue
         else:
-            # conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
-            # definition = result.find("div", class_="definition").get_text()
-            # conjugationsRaw = conjRegex.search(definition)
-
             # category = "NC"  # Not Conjugation
             # if not wordAlreadyStored(cur, "tagalog_words", word):
             print(word)
             txtDatabase.write(f"{word}\n")
+
+            # conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
+            # definition = result.find("div", class_="definition").get_text()
+            # conjugationsRaw = conjRegex.search(definition)
             # if conjugationsRaw is not None:
             #     conjugationsRawList = conjugationsRaw.group(1).split(",")
             #     conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]

@@ -1,4 +1,5 @@
 import json
+import re
 
 # string functions
 def getStartings(word):
@@ -75,6 +76,19 @@ def sortAlphabetically(word, withDashes):
         return alphaSorted, alphaSortedNoDuplicates, alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes
     else:
         return alphaSorted, alphaSortedNoDuplicates, None, None
+
+
+def wordIsAmbiguous(word):  # ambiguous words are those that can be feminine or masculine (ex. akitba-bo)
+    ambiguousWordRegex = re.compile(r"^((\w+)(\w)a-(\w)o)$")
+    ambiguousWordMO = ambiguousWordRegex.search(word)
+    if ambiguousWordMO is None:
+        return None, None
+    firstPart = ambiguousWordMO.group(2)
+    secondToTheLastLetter1 = ambiguousWordMO.group(3)
+    secondToTheLastLetter2 = ambiguousWordMO.group(4)
+    if secondToTheLastLetter1 != secondToTheLastLetter2:
+        return None, None
+    return firstPart + secondToTheLastLetter1 + "a", firstPart + secondToTheLastLetter2 + "o"
 
 
 # SQL queries-related functions

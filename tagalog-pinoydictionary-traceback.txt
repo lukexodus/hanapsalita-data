@@ -1715,3 +1715,49 @@ Traceback (most recent call last):
   File "C:\Program Files\JetBrains\PyCharm 2022.1\plugins\python\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
     time.sleep(0.01)
 KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/05 14:35:28 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/cebuano-pinoydictionary-scrape.py", line 183, in <module>
+    getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/cebuano-pinoydictionary-scrape.py", line 132, in getContentRecursively
+    file.write(json.dumps(progressJson))
+io.UnsupportedOperation: not writable
+
+~~~~~~~~~~~~~~~ 2022/07/05 14:41:28 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/cebuano-pinoydictionary-scrape.py", line 189, in <module>
+    getNextLetterPageInfo(startLetters, letter, searchUrl)
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/cebuano-pinoydictionary-scrape.py", line 68, in getNextLetterPageInfo
+    nextLetter = startLetters[nextLetterIndex]
+IndexError: list index out of range
+
+~~~~~~~~~~~~~~~ 2022/07/05 15:11:46 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 212, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 119, in getContent
+    lastRowId = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 174, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 147, in pushToMySQL
+    conn.commit()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 425, in commit
+    self._cmysql.commit()
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/05 15:14:10 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 212, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 119, in getContent
+    lastRowId = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 174, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 118, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt

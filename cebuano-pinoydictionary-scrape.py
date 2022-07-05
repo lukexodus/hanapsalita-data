@@ -63,18 +63,20 @@ def getLastPageNum(bs):
 
 
 def getNextLetterPageInfo(startLetters, letter, searchUrl):
+    if letter == startLetters[-1]:
+        return None, None, None, None
     nextLetterIndex = startLetters.index(letter) + 1
     lastRetrievedLetterIndex = nextLetterIndex
     nextLetter = startLetters[nextLetterIndex]
     nextPageSoup = getPage(searchUrl + nextLetter)
     lastPageNum = getLastPageNum(nextPageSoup)
-
+    
     return lastRetrievedLetterIndex, nextLetter, nextPageSoup, lastPageNum
 
 
 # progressJson file-related function
-def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
-                              stoppedAt, lastRowId):
+def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                              lastPageNum, stoppedAt, lastRowId):
     progressJson["lastRetrievedLetterIndex"] = lastRetrievedLetterIndex
     progressJson.setdefault(letter, {})
     progressJson[letter]["lastPageNum"] = lastPageNum
@@ -85,12 +87,12 @@ def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedL
 
 
 # main function/s
-def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt,
-               lastRowId):
-    storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
-                              stoppedAt, lastRowId)
+def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
+               stoppedAt, lastRowId):
+    storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                              lastPageNum, stoppedAt, lastRowId)
     searchResults = bs.select(wordGroupSelector)
-    for result in searchResults:  # Not Conjugation
+    for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
 
         if " " in word:
@@ -100,7 +102,7 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
             # definition = result.find("div", class_="definition").get_text()
             # conjugationsRaw = conjRegex.search(definition)
 
-            # category = "NC"
+            # category = "NC"  # Not Conjugation
             # if not wordAlreadyStored(cur, "tagalog_words", word):
             print(word)
             txtDatabase.write(f"{word}\n")
@@ -128,7 +130,7 @@ def getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, pr
         searchResults = succeedingPageSoup.select(wordGroupSelector)
     lastPageNum = nextPageNum - 1
     progressJson[letter]["lastPageNum"] = lastPageNum
-    with open(progressJsonFilename) as file:
+    with open(progressJsonFilename, "w") as file:
         file.write(json.dumps(progressJson))
 
 
@@ -156,9 +158,8 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
             # if the words of the specified letter are only in one to nine page/s
             # (i.e. the `Last Page` button is not found)
             if lastPageNum is None:
-                # current letter info storing
-                getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
-                           stoppedAt, lastRowId)
+                getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                           lastPageNum, stoppedAt, lastRowId)
                 # scrape the words until the available pages run out
                 getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,
                                       lastRetrievedLetterIndex, lastPageNum, lastRowId, 2)
@@ -187,6 +188,8 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
                 stoppedAt = 1
                 lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
                     getNextLetterPageInfo(startLetters, letter, searchUrl)
+                if letter is None:
+                    break
                 storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
                                           lastPageNum, stoppedAt, lastRowId)
                 continue
@@ -201,10 +204,9 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
                 bs = getPage(url)
             lastPageNumRetrieved = True
 
-            # current letter info storing
             stoppedAt = pageNum
-            getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
-                       stoppedAt, lastRowId)
+            getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                       lastPageNum, stoppedAt, lastRowId)
 
         stoppedAt = 1
         lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \

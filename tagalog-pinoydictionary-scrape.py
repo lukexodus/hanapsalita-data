@@ -53,26 +53,27 @@ def getNumFromLink(url):
 
 def getLastPageNum(bs):
     lastPage = bs.find(title="Last Page")
-    if lastPage == None:
+    if lastPage is None:
         return None
     url = lastPage["href"]
     return getNumFromLink(url)
 
 
 def getNextLetterPageInfo(startLetters, letter, searchUrl):
+    if letter == startLetters[-1]:
+        return None, None, None, None
     nextLetterIndex = startLetters.index(letter) + 1
     lastRetrievedLetterIndex = nextLetterIndex
     nextLetter = startLetters[nextLetterIndex]
-    nextPageSoup = getPage(searchUrl + letter)
+    nextPageSoup = getPage(searchUrl + nextLetter)
     lastPageNum = getLastPageNum(nextPageSoup)
-    if lastPageNum is None:
-        lastPageNum = 1
 
     return lastRetrievedLetterIndex, nextLetter, nextPageSoup, lastPageNum
 
 
 # progressJson file-related function
-def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId):
+def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                              lastPageNum, stoppedAt, lastRowId):
     progressJson["lastRetrievedLetterIndex"] = lastRetrievedLetterIndex
     progressJson.setdefault(letter, {})
     progressJson[letter]["lastPageNum"] = lastPageNum
@@ -82,10 +83,13 @@ def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedL
         file.write(json.dumps(progressJson))
 
 
-# main function
-def getContent(bs, lastRowId):
+# main function/s
+def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
+               stoppedAt, lastRowId):
+    storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                              lastPageNum, stoppedAt, lastRowId)
     searchResults = bs.select(wordGroupSelector)
-    for result in searchResults: # Not Conjugation
+    for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
 
         if " " in word:
@@ -95,7 +99,7 @@ def getContent(bs, lastRowId):
             definition = result.find("div", class_="definition").get_text()
             conjugationsRaw = conjRegex.search(definition)
 
-            category = "NC"
+            category = "NC"  # Not Conjugation
             if not wordAlreadyStored(cur, "tagalog_words", word):
                 wordInfo = getInfoFromWord(word)
                 variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category]
@@ -116,6 +120,24 @@ def getContent(bs, lastRowId):
     return lastRowId
 
 
+def getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,
+                          lastRetrievedLetterIndex, lastPageNum, lastRowId, startPageNum):
+    nextPageNum = startPageNum
+    succeedingPageSoup = getPage(f'{searchUrl}{letter}/{nextPageNum if nextPageNum > 1 else ""}/')
+    searchResults = succeedingPageSoup.select(wordGroupSelector)
+    while len(searchResults) != 0:
+        nextPageNum += 1
+        stoppedAt = nextPageNum - 1
+        getContent(succeedingPageSoup, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                   lastPageNum, stoppedAt, lastRowId)
+        succeedingPageSoup = getPage(f'{searchUrl}{letter}/{nextPageNum if nextPageNum > 1 else ""}/')
+        searchResults = succeedingPageSoup.select(wordGroupSelector)
+    lastPageNum = nextPageNum - 1
+    progressJson[letter]["lastPageNum"] = lastPageNum
+    with open(progressJsonFilename, "w") as file:
+        file.write(json.dumps(progressJson))
+
+
 # initialize/retrieve variables to avoid letting them be undefined
 letter = startLetters[lastRetrievedLetterIndex]
 lastPageNum = 1
@@ -125,66 +147,90 @@ nextPageSoup = None
 for i in range(lastRetrievedLetterIndex, len(startLetters)):
     try:
         if letter not in progressJson:  # if it's the first time to scrape the words of the specified letter
-            lastPageNumRetrieved = False
-
+            lastPageNumRetrieved = True  # just in case the retrieval of `bs` will have an error
             if nextPageSoup is not None:
                 bs = nextPageSoup
                 nextPageSoup = None
             else:
                 bs = getPage(searchUrl + letter)
+            lastPageNumRetrieved = False
 
+            # initialize progress information
             lastPageNum = getLastPageNum(bs)
             stoppedAt = 1
-            if lastPageNum is None:  # if the words of the specified letter are only in one page
-                lastRowId = getContent(bs, lastRowId)
-                progressJson[letter]["lastPageNum"] = 1
-                progressJson[letter]["stoppedAt"] = stoppedAt
-                # prepares to jump at the next letter
+
+            # if the words of the specified letter are only in one to nine page/s
+            # (i.e. the `Last Page` button is not found)
+            if lastPageNum is None:
+                lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                       lastPageNum, stoppedAt, lastRowId)
+                # scrape the words until the available pages run out
+                getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,
+                                      lastRetrievedLetterIndex, lastPageNum, lastRowId, 2)
+
+                # next letter info retrieval and storing
                 lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
                     getNextLetterPageInfo(startLetters, letter, searchUrl)
-                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt,
-                                          lastRowId)
+                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                          lastPageNum, stoppedAt, lastRowId)
                 continue
 
-        else:  # retrieve progress information
+        else:
             lastPageNumRetrieved = True
+            # retrieve progress information
             lastPageNum = progressJson[letter]["lastPageNum"]
             stoppedAt = progressJson[letter]["stoppedAt"]
 
-        for pageNum in range(stoppedAt, lastPageNum + 1):  # continue at where the program left at the previous run
+            # if the words of the specified letter are only in one to nine page/s
+            # (i.e. the `Last Page` button is not found)
+            if lastPageNum is None:
+                # scrape the words until the available pages run out
+                getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,
+                                      lastRetrievedLetterIndex, lastPageNum, lastRowId, 1)
+
+                # next letter info retrieval and storing
+                stoppedAt = 1
+                lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
+                    getNextLetterPageInfo(startLetters, letter, searchUrl)
+                if letter is None:
+                    break
+                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                          lastPageNum, stoppedAt, lastRowId)
+                continue
+
+        startPage = stoppedAt
+        for pageNum in range(startPage, lastPageNum + 1):  # continue at where the program left at the previous run
             # if the first page's soup is already retrieved then uses it for getting the words also
             if not lastPageNumRetrieved:
                 bs = bs
             else:
                 url = f'{searchUrl}{letter}/{pageNum if pageNum > 1 else ""}/'
                 bs = getPage(url)
-            lastRowId = getContent(bs, lastRowId)
-
-            if stoppedAt == lastPageNum:  # if arrived at the last page
-                progressJson[letter]["stoppedAt"] = stoppedAt
-                # prepares to jump at the next letter
-                stoppedAt = 1
-                lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
-                    getNextLetterPageInfo(startLetters, letter, searchUrl)
-                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
-                                          lastPageNum, stoppedAt, lastRowId)
-
-            else:
-                stoppedAt += 1
             lastPageNumRetrieved = True
-            storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+
+            stoppedAt = pageNum
+            lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                   lastPageNum, stoppedAt, lastRowId)
+
+        stoppedAt = 1
+        lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
+            getNextLetterPageInfo(startLetters, letter, searchUrl)
+        storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                  lastPageNum, stoppedAt, lastRowId)
+
     except:
         with open("tagalog-pinoydictionary-traceback.txt", "a") as file:
             file.write(f'\n{"~" * 15} {datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")} {"~" * 15}\n')
             file.write(traceback.format_exc())
         print(traceback.format_exc())
-    finally:
-        storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+        storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
+                                  stoppedAt, lastRowId)
         cur.close()
         conn.close()
         sys.exit()
 
-storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt,
+                          lastRowId)
 cur.close()
 conn.close()
 print('Program finished.')

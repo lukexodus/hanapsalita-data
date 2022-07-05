@@ -17,6 +17,7 @@ startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
                 "n", "o", "p", "r", "s", "t", "u", "w", "x", "y", "z"]
 progressJsonFilename = "tagalog-pinoydictionary-progress.json"
 wordsJsonFilename = "tagalog-pinoydictionary-words.json"
+wordGroupSelector = "div.word-group"
 
 with open(progressJsonFilename) as file:
     progressJson = json.loads(file.read())
@@ -27,7 +28,7 @@ if "lastRowId" not in progressJson:
     progressJson["lastRowId"] = None
 lastRowId = progressJson["lastRowId"]
 
-with open("tagalog-pinoydictionary-words.json") as file:
+with open(wordsJsonFilename) as file:
     jsonDatabase = json.loads(file.read())
 jsonDatabase.setdefault("data", {})
 
@@ -83,7 +84,7 @@ def storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedL
 
 # main function
 def getContent(bs, lastRowId):
-    searchResults = bs.select("div.word-group")
+    searchResults = bs.select(wordGroupSelector)
     for result in searchResults: # Not Conjugation
         word = result.find("h2", class_="word-entry").get_text()
 
@@ -136,8 +137,9 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
             stoppedAt = 1
             if lastPageNum is None:  # if the words of the specified letter are only in one page
                 lastRowId = getContent(bs, lastRowId)
-                # prepares to jump at the next letter
+                progressJson[letter]["lastPageNum"] = 1
                 progressJson[letter]["stoppedAt"] = stoppedAt
+                # prepares to jump at the next letter
                 lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
                     getNextLetterPageInfo(startLetters, letter, searchUrl)
                 storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt,
@@ -150,7 +152,8 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
             stoppedAt = progressJson[letter]["stoppedAt"]
 
         for pageNum in range(stoppedAt, lastPageNum + 1):  # continue at where the program left at the previous run
-            if not lastPageNumRetrieved:  # if `bs` is already retrieved or not (i.e. defined or not)
+            # if the first page's soup is already retrieved then uses it for getting the words also
+            if not lastPageNumRetrieved:
                 bs = bs
             else:
                 url = f'{searchUrl}{letter}/{pageNum if pageNum > 1 else ""}/'
@@ -158,13 +161,17 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
             lastRowId = getContent(bs, lastRowId)
 
             if stoppedAt == lastPageNum:  # if arrived at the last page
-                # prepares to jump at the next letter
                 progressJson[letter]["stoppedAt"] = stoppedAt
+                # prepares to jump at the next letter
+                stoppedAt = 1
                 lastRetrievedLetterIndex, letter, nextPageSoup, lastPageNum = \
                     getNextLetterPageInfo(startLetters, letter, searchUrl)
+                storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+                                          lastPageNum, stoppedAt, lastRowId)
 
             else:
                 stoppedAt += 1
+            lastPageNumRetrieved = True
             storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
     except:
         with open("tagalog-pinoydictionary-traceback.txt", "a") as file:
@@ -173,7 +180,11 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
         print(traceback.format_exc())
     finally:
         storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+        cur.close()
+        conn.close()
         sys.exit()
 
 storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum, stoppedAt, lastRowId)
+cur.close()
+conn.close()
 print('Program finished.')

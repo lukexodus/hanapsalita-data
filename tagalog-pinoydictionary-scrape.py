@@ -9,8 +9,9 @@ import requests
 from bs4 import BeautifulSoup
 import mysql.connector
 
-from scrapeUtils import getStartings, getEndings, getConstituents, sortAlphabetically, pushToDatabases,\
-    wordAlreadyStored, getInfoFromWord, wordIsAmbiguous
+from scrapeUtils import pushToDatabases, wordAlreadyStored, getInfoFromWord, wordIsAmbiguous, \
+    wordIsInterjection, wordStartsWithCapitalLetter, wordHasUnexpectedCharacters, \
+    pushToExceptionWordsTable, processWord
 
 searchUrl = "https://tagalog.pinoydictionary.com/list/"
 startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
@@ -88,23 +89,47 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
                stoppedAt, lastRowId):
     storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
                               lastPageNum, stoppedAt, lastRowId)
+    lastRowID = lastRowId
     searchResults = bs.select(wordGroupSelector)
     for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
+        word = word.strip()
+        category = "NV"  # Non-Verb
+
+        conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
+        definition = result.find("div", class_="definition").get_text()
+        conjugationsRaw = conjRegex.search(definition)
+        if conjugationsRaw is not None:
+            category = "V"  # Verb
+            verbBaseForm = word
+        else:
+            verbBaseForm = None
+
+        feminineVariation, masculineVariation = wordIsAmbiguous(word)
 
         if " " in word or "." in word:
             continue
+        elif wordHasUnexpectedCharacters(word):
+            if not wordAlreadyStored(cur, "tagalog_exception_words", word):
+                pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm)
+        elif feminineVariation is not None:
+            if not wordAlreadyStored(cur, "tagalog_words", feminineVariation):
+                lastRowID = processWord(feminineVariation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+                                        category, verbBaseForm)
+            if not wordAlreadyStored(cur, "tagalog_words", masculineVariation):
+                lastRowID = processWord(masculineVariation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+                                        category, verbBaseForm)
         else:
-            category = "NC"  # Not Conjugation
-            if not wordAlreadyStored(cur, "tagalog_words", word):
-                wordInfo = getInfoFromWord(word)
-                variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category]
-                variablesToBePushed.extend(wordInfo)
-                lastRowId = pushToDatabases(*variablesToBePushed)
+            wordIsInterjectionVar = wordIsInterjection(word)
+            if wordStartsWithCapitalLetter(word) and not wordIsInterjectionVar:
+                category = "PN"  # Proper Noun
+            elif wordIsInterjectionVar:
+                category = "I"  # Interjection
 
-            conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
-            definition = result.find("div", class_="definition").get_text()
-            conjugationsRaw = conjRegex.search(definition)
+            if not wordAlreadyStored(cur, "tagalog_words", word):
+                lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+                                        verbBaseForm)
+
             if conjugationsRaw is not None:
                 conjugationsRawList = conjugationsRaw.group(1).split(",")
                 conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
@@ -112,12 +137,9 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
                 category = "C"  # Conjugation
                 for conjugation in conjugationsList:
                     if not wordAlreadyStored(cur, "tagalog_words", conjugation):
-                        wordInfo = getInfoFromWord(conjugation)
-                        variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, conjugation,
-                                               category]
-                        variablesToBePushed.extend(wordInfo)
-                        lastRowId = pushToDatabases(*variablesToBePushed)
-    return lastRowId
+                        lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+                                                category, verbBaseForm)
+    return lastRowID
 
 
 def getContentRecursively(searchUrl, letter, wordGroupSelector, progressJson, progressJsonFilename,

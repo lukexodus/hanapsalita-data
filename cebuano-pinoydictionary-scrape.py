@@ -17,7 +17,7 @@ startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
                 "n", "o", "p", "r", "s", "t", "u", "w", "x", "y", "z"]
 progressJsonFilename = "cebuano-pinoydictionary-progress.json"
 wordsJsonFilename = "cebuano-pinoydictionary-words.json"
-textDatabaseFilename = "cebuano-pinoydictionary-words.txt"
+textDatabaseFilename = "cebuano-pinoydictionary-words-no-filter.txt"
 wordGroupSelector = "div.word-group"
 
 with open(progressJsonFilename) as file:
@@ -94,14 +94,17 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
     searchResults = bs.select(wordGroupSelector)
     for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
+        print(word)
+        txtDatabase.write(f"{word}\n")
 
-        if " " in word:
-            continue
-        else:
+
+        # if " " in word:
+        #     continue
+        # else:
             # category = "NC"  # Not Conjugation
             # if not wordAlreadyStored(cur, "tagalog_words", word):
-            print(word)
-            txtDatabase.write(f"{word}\n")
+            # print(word)
+            # txtDatabase.write(f"{word}\n")
 
             # conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
             # definition = result.find("div", class_="definition").get_text()

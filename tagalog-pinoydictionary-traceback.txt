@@ -778,7 +778,7 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
     lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
-    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
     cur.execute(tagalogWordsSQL, tagalogWordsValues)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
@@ -801,7 +801,7 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
     lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
-    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
     cur.execute(tagalogWordsSQL, tagalogWordsValues)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
@@ -817,7 +817,7 @@ Traceback (most recent call last):
   File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 74, in getContent
     lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
-    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 104, in pushToMySQL
     if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 104, in pushToMySQL
@@ -847,7 +847,7 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 74, in getContent
     lastRowId = pushToDatabases(conn, cur, "tagalog_words", jsonDatabase, lastRowId, word, wordLength, category, alphaSorted,
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 159, in pushToDatabases
-    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startings, endings, constituentsRows)
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted, alphaSortedNoDuplicates, startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 102, in pushToMySQL
     cur.execute(tagalogWordsSQL, tagalogWordsValues)
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
@@ -1169,7 +1169,7 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 182, in pushToDatabases
     lastRowID = pushToMySQL(conn, cur, lastRowId, word, wordLength, category, alphaSorted,
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 125, in pushToMySQL
-    tagalogStartValues = [lastRowId1] + startings
+    tagalogStartValues = [lastRowId1] + startingsWithoutPunctuations
 TypeError: can only concatenate list (not "tuple") to list
 
 ~~~~~~~~~~~~~~~ 2022/07/04 16:24:31 ~~~~~~~~~~~~~~~
@@ -2192,3 +2192,272 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 547, in send
     raise ConnectionError(err, request=request)
 requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:11:20 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 700, in urlopen
+    self._prepare_proxy(conn)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 994, in _prepare_proxy
+    conn.connect()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connection.py", line 364, in connect
+    self.sock = conn = self._connect_tls_proxy(hostname, conn)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connection.py", line 499, in _connect_tls_proxy
+    socket = ssl_wrap_socket(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 453, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\ssl_.py", line 495, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='tagalog.pinoydictionary.com', port=443): Max retries exceeded with url: /list/a (Caused by ProxyError('Your proxy appears to only use HTTP and not HTTPS, try changing your proxy URL to be HTTP. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#https-proxy-error-http-proxy', SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)'))))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 174, in <module>
+    bs = getPage(searchUrl + letter)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 42, in getPage
+    req = requests.get(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 559, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='tagalog.pinoydictionary.com', port=443): Max retries exceeded with url: /list/a (Caused by ProxyError('Your proxy appears to only use HTTP and not HTTPS, try changing your proxy URL to be HTTP. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#https-proxy-error-http-proxy', SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)'))))
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:12:26 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Unknown column '1c' in 'field list'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 231, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 295, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 251, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 201, in pushToMySQL
+    cur.execute(tagalogContainSQL, tagalogConstituentsRowValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column '1c' in 'field list'
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:32:57 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Column count doesn't match value count at row 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 231, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 324, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 280, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 183, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.DataError: 1136 (21S01): Column count doesn't match value count at row 1
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:45:24 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry '1' for key 'PRIMARY'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 231, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 127, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 324, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 280, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 229, in pushToMySQL
+    cur.execute(tagalogContainStrictSQL, tagalogConstituentsRowValuesStrict)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:48:49 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'abahin' for key 'word'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 231, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 137, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 324, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 280, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 173, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'abahin' for key 'word'
+
+~~~~~~~~~~~~~~~ 2022/07/06 13:57:49 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'abahin' for key 'word'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 233, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 139, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 323, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 279, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 173, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'abahin' for key 'word'
+
+~~~~~~~~~~~~~~~ 2022/07/06 14:25:48 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 233, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 129, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 323, in processWord
+    variablesToBePushed.extend(wordInfo)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 285, in pushToDatabases
+    constituentsRowsWithPunctuations)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 241, in pushToJSON
+    jsonDatabase["data"].setdefault(word, {})
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 241, in pushToJSON
+    jsonDatabase["data"].setdefault(word, {})
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 14:25:59 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 233, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 128, in getContent
+    if not wordAlreadyStored(cur, "tagalog_words", word):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 137, in wordAlreadyStored
+    cur.execute("SELECT * FROM " + table + " WHERE word=%s", (word,))
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 14:37:40 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 233, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 129, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 324, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 280, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 230, in pushToMySQL
+    conn.commit()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 425, in commit
+    self._cmysql.commit()
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 14:55:11 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\cebuano-pinoydictionary-scrape.py", line 207, in <module>
+    bs = getPage(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\cebuano-pinoydictionary-scrape.py", line 44, in getPage
+    req = requests.get(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt

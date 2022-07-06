@@ -3,17 +3,17 @@ import re
 
 # string functions
 def getStartings(word):
-    startings = []
+    startingsWithoutPunctuations = []
     for i in range(len(word)):
-        startings.append(word[:i+1])
-    return startings
+        startingsWithoutPunctuations.append(word[:i+1])
+    return startingsWithoutPunctuations
 
 
 def getEndings(word):
-    endings = []
+    endingsWithoutPunctuations = []
     for i in range(len(word) -1, -1, -1):
-        endings.append(word[i:len(word)])
-    return endings
+        endingsWithoutPunctuations.append(word[i:len(word)])
+    return endingsWithoutPunctuations
 
 
 """
@@ -58,24 +58,18 @@ def getConstituents(word):
     return constituentsColumns
 
 
-def sortAlphabetically(word, withDashes):
+def sortAlphabetically(word):
     wordList = list(word)
     wordList.sort()
     alphaSorted = "".join(wordList)
-    alphaSortedWithoutDashes = "".join([letter for letter in wordList if letter != "-"])
-    alphaSortedNoDuplicates = ""
-    alphaSortedNoDuplicatesWithoutDashes = ""
+    alphaSortedNoDuplicates = []
     i = 0
     while wordList:
         if wordList[0] not in alphaSortedNoDuplicates:
             alphaSortedNoDuplicates += wordList[0]
-            if wordList[0] != "-":
-                alphaSortedNoDuplicatesWithoutDashes += wordList[0]
         wordList.pop(0)
-    if withDashes:
-        return alphaSorted, alphaSortedNoDuplicates, alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes
-    else:
-        return alphaSorted, alphaSortedNoDuplicates, None, None
+    alphaSortedNoDuplicates = "".join(alphaSortedNoDuplicates)
+    return alphaSorted, alphaSortedNoDuplicates
 
 
 def wordIsAmbiguous(word):  # ambiguous words are those that can be feminine or masculine (ex. akitba-bo)
@@ -89,6 +83,37 @@ def wordIsAmbiguous(word):  # ambiguous words are those that can be feminine or 
     if secondToTheLastLetter1 != secondToTheLastLetter2:
         return None, None
     return firstPart + secondToTheLastLetter1 + "a", firstPart + secondToTheLastLetter2 + "o"
+
+
+def wordIsInterjection(word):
+    endsWithExclamationOrQuestionMark = re.compile(r"[!?]$")
+    mark = endsWithExclamationOrQuestionMark.search(word)
+    if mark is not None:
+        return True
+    return False
+
+
+def wordStartsWithCapitalLetter(word):
+    startsWithCapitalLetterRegex = re.compile(r"^[A-Z]")
+    capitalLetter = startsWithCapitalLetterRegex.search(word)
+    if capitalLetter is not None:
+        return True
+    return False
+
+
+def wordHasUnexpectedCharacters(word):
+    unexpectedCharactersRegex = re.compile(r"[^A-Za-z!?'-]")
+    unexpectedCharacters = unexpectedCharactersRegex.search(word)
+    if unexpectedCharacters is not None:
+        return True
+    return False
+
+
+def purifyWord(word):
+    """Removed all non-word characters"""
+    nonWordRegex = re.compile(r"\W")
+    wordPurified = nonWordRegex.sub("", word)
+    return wordPurified
 
 
 # SQL queries-related functions
@@ -118,89 +143,183 @@ def wordAlreadyStored(cur, table, word):
 
 
 # main functions
-def pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes, alphaSorted,
-                alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates, startings, endings, constituentsRows):
-    if not withDashes:
+def pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+                alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+                alphaSortedNoDuplicatesWithPunctuations, startingsWithoutPunctuations, endingsWithoutPunctuations,
+                constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
+                constituentsRowsWithPunctuations):
+    if not withPunctuations and verbBaseForm is not None:
+        tagalogWordsValues = (word, wordLength, category, verbBaseForm, alphaSortedWithPunctuations,
+                              alphaSortedNoDuplicatesWithPunctuations)
         tagalogWordsSQL = \
-            "INSERT INTO tagalog_words (word, length, category, alpha_sorted_without_dashes, alpha_sorted_no_duplicates_without_dashes) VALUES (%s, %s, %s, %s, %s)"
-        tagalogWordsValues = (word, wordLength, category, alphaSorted, alphaSortedNoDuplicates)
-    else:
+            f"INSERT INTO tagalog_words (word, length, category, verb_base_form, alpha_sorted_not_strict, alpha_sorted_no_duplicates_not_strict) VALUES ({buildColumnParametersPlaceholders(len(tagalogWordsValues))})"
+    elif withPunctuations and verbBaseForm is not None:
+        tagalogWordsValues = (word, wordLength, category, verbBaseForm, alphaSortedWithoutPunctuations,
+                              alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+                              alphaSortedNoDuplicatesWithPunctuations)
         tagalogWordsSQL = \
-            "INSERT INTO tagalog_words (word, length, category, alpha_sorted_without_dashes, alpha_sorted, alpha_sorted_no_duplicates_without_dashes, alpha_sorted_no_duplicates) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        tagalogWordsValues = (word, wordLength, category, alphaSortedWithoutDashes, alphaSorted,
-                              alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates)
+            f"INSERT INTO tagalog_words (word, length, category, verb_base_form, alpha_sorted_not_strict, alpha_sorted_strict, alpha_sorted_no_duplicates_not_strict, alpha_sorted_no_duplicates_strict) VALUES ({buildColumnParametersPlaceholders(len(tagalogWordsValues))})"
+    elif not withPunctuations and verbBaseForm is None:
+        tagalogWordsValues = (word, wordLength, category, alphaSortedWithPunctuations,
+                              alphaSortedNoDuplicatesWithPunctuations)
+        tagalogWordsSQL = \
+            f"INSERT INTO tagalog_words (word, length, category, alpha_sorted_not_strict, alpha_sorted_no_duplicates_not_strict) VALUES ({buildColumnParametersPlaceholders(len(tagalogWordsValues))})"
+    elif withPunctuations and verbBaseForm is None:
+        tagalogWordsValues = (word, wordLength, category, alphaSortedWithoutPunctuations,
+                              alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+                              alphaSortedNoDuplicatesWithPunctuations)
+        tagalogWordsSQL = \
+            f"INSERT INTO tagalog_words (word, length, category, alpha_sorted_not_strict, alpha_sorted_strict, alpha_sorted_no_duplicates_not_strict, alpha_sorted_no_duplicates_strict) VALUES ({buildColumnParametersPlaceholders(len(tagalogWordsValues))})"
     cur.execute(tagalogWordsSQL, tagalogWordsValues)
     lastRowId1 = cur.lastrowid
     # if (lastRowId is not None) and ((lastRowId + 1) != lastRowId1):
     #     raise Exception("`lastRowId + 1` and `lastRowId1` mismatch")
     conn.commit()
 
-    tagalogStartSQL = \
-        f"INSERT INTO tagalog_start (id, {buildColumnParameters(wordLength, 's')}) VALUES ({buildColumnParametersPlaceholders(wordLength + 1)})"
-    tagalogStartValues = [lastRowId1] + startings
-    cur.execute(tagalogStartSQL, tagalogStartValues)
+    # tagalog_start_*
+    tagalogStartNotStrictValues = [lastRowId1] + startingsWithoutPunctuations
+    tagalogStartNotStrictSQL = \
+        f"INSERT INTO tagalog_start_not_strict (id, {buildColumnParameters(len(tagalogStartNotStrictValues) - 1, 's_ns')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartNotStrictValues))})"
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
     conn.commit()
 
-    tagalogEndSQL = \
-        f"INSERT INTO tagalog_end (id, {buildColumnParameters(wordLength, 'e')}) VALUES ({buildColumnParametersPlaceholders(wordLength + 1)})"
-    tagalogEndValues = [lastRowId1] + endings
-    cur.execute(tagalogEndSQL, tagalogEndValues)
+    tagalogStartStrictValues = [lastRowId1] + startingsWithPunctuations
+    tagalogStartStrictSQL = \
+        f"INSERT INTO tagalog_start_strict (id, {buildColumnParameters(len(tagalogStartStrictValues) - 1, 's_s')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartStrictValues))})"
+    cur.execute(tagalogStartStrictSQL, tagalogStartStrictValues)
     conn.commit()
 
-    for i, constituentsRow, in enumerate(constituentsRows):
-        columnLength = len(constituentsRows[i])
-        tagalogContainSQL = \
-            f"INSERT INTO tagalog_contain (id, {buildColumnParameters(columnLength, 'c')}) VALUES ({buildColumnParametersPlaceholders(columnLength + 1)})"
+    # tagalog_end_*
+    tagalogEndNotStrictValues = [lastRowId1] + endingsWithoutPunctuations
+    tagalogEndNotStrictSQL = \
+        f"INSERT INTO tagalog_end_not_strict (id, {buildColumnParameters(len(tagalogEndNotStrictValues) - 1, 'e_ns')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndNotStrictValues))})"
+    cur.execute(tagalogEndNotStrictSQL, tagalogEndNotStrictValues)
+    conn.commit()
 
-        tagalogConstituentsRowValues = [lastRowId1]
+    tagalogEndStrictValues = [lastRowId1] + endingsWithPunctuations
+    tagalogEndStrictSQL = \
+        f"INSERT INTO tagalog_end_strict (id, {buildColumnParameters(len(tagalogEndStrictValues) - 1, 'e_s')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndStrictValues))})"
+    cur.execute(tagalogEndStrictSQL, tagalogEndStrictValues)
+    conn.commit()
+
+    # tagalog_contain_*
+    for i, constituentsRow, in enumerate(constituentsRowsWithoutPunctuations):
+        columnLength = len(constituentsRowsWithoutPunctuations[i])
+        tagalogContainNotStrictSQL = \
+            f"INSERT INTO tagalog_contain_not_strict (id, {buildColumnParameters(columnLength, 'c_ns')}) VALUES ({buildColumnParametersPlaceholders(columnLength + 1)})"
+
+        tagalogConstituentsRowValuesNotStrict = [lastRowId1]
         for j, constituent in enumerate(constituentsRow):
-            tagalogConstituentsRowValues.append(constituentsRow[j])
-        tagalogConstituentsRowValues = tuple(tagalogConstituentsRowValues)
+            tagalogConstituentsRowValuesNotStrict.append(constituentsRow[j])
+        tagalogConstituentsRowValuesNotStrict = tuple(tagalogConstituentsRowValuesNotStrict)
 
-        cur.execute(tagalogContainSQL, tagalogConstituentsRowValues)
+        cur.execute(tagalogContainNotStrictSQL, tagalogConstituentsRowValuesNotStrict)
+        conn.commit()
+
+    for i, constituentsRow, in enumerate(constituentsRowsWithPunctuations):
+        columnLength = len(constituentsRowsWithPunctuations[i])
+        tagalogContainStrictSQL = \
+            f"INSERT INTO tagalog_contain_strict (id, {buildColumnParameters(columnLength, 'c_s')}) VALUES ({buildColumnParametersPlaceholders(columnLength + 1)})"
+
+        tagalogConstituentsRowValuesStrict = [lastRowId1]
+        for j, constituent in enumerate(constituentsRow):
+            tagalogConstituentsRowValuesStrict.append(constituentsRow[j])
+        tagalogConstituentsRowValuesStrict = tuple(tagalogConstituentsRowValuesStrict)
+
+        cur.execute(tagalogContainStrictSQL, tagalogConstituentsRowValuesStrict)
         conn.commit()
 
     return lastRowId1
 
 
-def pushToJSON(jsonDatabase, wordsJsonFilename, lastRowId, word, category, wordLength, withDashes,
-                    alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,
-                    alphaSortedNoDuplicates, startings, endings, constituentsRows):
+def pushToJSON(jsonDatabase, wordsJsonFilename, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+               alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+               alphaSortedNoDuplicatesWithPunctuations, startingsWithoutPunctuations, endingsWithoutPunctuations,
+               constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
+               constituentsRowsWithPunctuations):
+    jsonDatabase["lastRowId"] = lastRowId
     jsonDatabase["data"].setdefault(word, {})
     jsonDatabase["data"][word]["id"] = lastRowId
     jsonDatabase["data"][word]["length"] = wordLength
     jsonDatabase["data"][word]["category"] = category
-    jsonDatabase["data"][word]["withDashes"] = withDashes
-    jsonDatabase["data"][word]["alphaSortedWithoutDashes"] = alphaSortedWithoutDashes
-    jsonDatabase["data"][word]["alpha_sorted"] = alphaSorted
-    jsonDatabase["data"][word]["alphaSortedNoDuplicatesWithoutDashes"] = alphaSortedNoDuplicatesWithoutDashes
-    jsonDatabase["data"][word]["alpha_sorted_no_duplicates"] = alphaSortedNoDuplicates
-    jsonDatabase["data"][word]["startings"] = startings
-    jsonDatabase["data"][word]["endings"] = endings
-    jsonDatabase["data"][word]["constituentsRows"] = constituentsRows
+    jsonDatabase["data"][word]["verb_base_form"] = verbBaseForm
+    jsonDatabase["data"][word]["withPunctuations"] = withPunctuations
+    jsonDatabase["data"][word]["alpha_sorted_not_strict"] = alphaSortedWithoutPunctuations
+    jsonDatabase["data"][word]["alpha_sorted_strict"] = alphaSortedWithPunctuations
+    jsonDatabase["data"][word]["alpha_sorted_no_duplicates_not_strict"] = alphaSortedNoDuplicatesWithoutPunctuations
+    jsonDatabase["data"][word]["alpha_sorted_no_duplicates_strict"] = alphaSortedNoDuplicatesWithPunctuations
+    jsonDatabase["data"][word]["startings_not_strict"] = startingsWithoutPunctuations
+    jsonDatabase["data"][word]["endings_not_strict"] = endingsWithoutPunctuations
+    jsonDatabase["data"][word]["contain_not_strict"] = constituentsRowsWithoutPunctuations
+    jsonDatabase["data"][word]["startings_strict"] = startingsWithPunctuations
+    jsonDatabase["data"][word]["endings_strict"] = endingsWithPunctuations
+    jsonDatabase["data"][word]["contain_strict"] = constituentsRowsWithPunctuations
+
     with open(wordsJsonFilename, "w") as file:
         file.write(json.dumps(jsonDatabase))
 
 
-def pushToDatabases(conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category, wordLength, withDashes,
-                    alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,
-                    alphaSortedNoDuplicates, startings, endings, constituentsRows):
-    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, wordLength, withDashes, alphaSortedWithoutDashes,
-                            alphaSorted, alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates, startings,
-                            endings, constituentsRows)
-    pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, wordLength, withDashes,
-               alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes, alphaSortedNoDuplicates,
-               startings, endings, constituentsRows)
+def pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm):
+    if verbBaseForm is None:
+        tagalogExceptionWordsValues = (word, category)
+        tagalogExceptionWordsSQL = \
+            f"INSERT INTO tagalog_exception_words (word, category) VALUES ({buildColumnParametersPlaceholders(len(tagalogExceptionWordsValues))})"
+    else:
+        tagalogExceptionWordsValues = (word, category, verbBaseForm)
+        tagalogExceptionWordsSQL = \
+            f"INSERT INTO tagalog_exception_words (word, category, verb_base_form) VALUES ({buildColumnParametersPlaceholders(len(tagalogExceptionWordsValues))})"
+        cur.execute(tagalogExceptionWordsValues, tagalogExceptionWordsSQL)
+        conn.commit()
+
+
+def pushToDatabases(conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category, verbBaseForm,  wordLength,
+                    withPunctuations, alphaSortedWithoutPunctuations, alphaSortedWithPunctuations,
+                    alphaSortedNoDuplicatesWithoutPunctuations, alphaSortedNoDuplicatesWithPunctuations,
+                    startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations,
+                    startingsWithPunctuations, endingsWithPunctuations, constituentsRowsWithPunctuations):
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+                            alphaSortedWithoutPunctuations, alphaSortedWithPunctuations,
+                            alphaSortedNoDuplicatesWithoutPunctuations, alphaSortedNoDuplicatesWithPunctuations,
+                            startingsWithoutPunctuations, endingsWithoutPunctuations,
+                            constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
+                            constituentsRowsWithPunctuations)
+    pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, verbBaseForm, wordLength, withPunctuations,
+               alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+               alphaSortedNoDuplicatesWithPunctuations, startingsWithoutPunctuations, endingsWithoutPunctuations,
+               constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
+               constituentsRowsWithPunctuations)
     print(word)
     return lastRowID
 
 
+punctuations = "!?'-,"
+
+
 def getInfoFromWord(word):
-    wordLength = len(word)
-    withDashes = True if "-" in word else False
-    alphaSorted, alphaSortedNoDuplicates, alphaSortedWithoutDashes, alphaSortedNoDuplicatesWithoutDashes = \
-        sortAlphabetically(word, withDashes)
-    startings, endings = getStartings(word), getEndings(word)
-    constituentsRows = getConstituents(word)
-    return wordLength, withDashes, alphaSortedWithoutDashes, alphaSorted, alphaSortedNoDuplicatesWithoutDashes,\
-        alphaSortedNoDuplicates, startings, endings, constituentsRows
+    wordStrippedAndLowered = word.strip(punctuations).lower()  # for the *_strict tables
+    wordPurified = purifyWord(wordStrippedAndLowered)  # for the *_not_strict tables
+    wordLength = len(wordPurified)
+    withPunctuations = True if ("-" in wordStrippedAndLowered) or ("'" in wordStrippedAndLowered) else False
+
+    alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithPunctuations = sortAlphabetically(wordStrippedAndLowered)
+    alphaSortedWithoutPunctuations, alphaSortedNoDuplicatesWithoutPunctuations = sortAlphabetically(wordPurified)
+
+    startingsWithoutPunctuations, endingsWithoutPunctuations = getStartings(wordPurified), getEndings(wordPurified)
+    constituentsRowsWithoutPunctuations = getConstituents(wordPurified)
+
+    startingsWithPunctuations, endingsWithPunctuations = getStartings(wordStrippedAndLowered), getEndings(wordStrippedAndLowered)
+    constituentsRowsWithPunctuations = getConstituents(wordStrippedAndLowered)
+
+    return wordLength, withPunctuations, alphaSortedWithoutPunctuations, alphaSortedWithPunctuations,\
+        alphaSortedNoDuplicatesWithoutPunctuations, alphaSortedNoDuplicatesWithPunctuations, \
+        startingsWithoutPunctuations, endingsWithoutPunctuations, constituentsRowsWithoutPunctuations, \
+        startingsWithPunctuations, endingsWithPunctuations, constituentsRowsWithPunctuations
+
+
+def processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, category, verbBaseForm):
+    """Wrapper function for `getInfoFromWord` and `pushToDatabases`"""
+    wordInfo = getInfoFromWord(word)
+    variablesToBePushed = [conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category, verbBaseForm]
+    variablesToBePushed.extend(wordInfo)
+    lastRowID = pushToDatabases(*variablesToBePushed)
+    return lastRowID

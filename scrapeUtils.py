@@ -42,7 +42,7 @@ enamored                     (8, 1)
 
 def getConstituents(word):
     wordLength = len(word)
-    constituentsColumns = []
+    constituentsRows = []
 
     limit = wordLength
     # this list of lists will be in reverse dimension (i.e. (y, x) instead of (x, y))
@@ -51,11 +51,61 @@ def getConstituents(word):
         column = []
         for chunkLen in range(1, wordLength + 1):
             constituent = word[step:step+chunkLen]
-            if constituent not in column:  # remove duplicates
+            if constituent not in column:  # avoid going beyond the length of the word
                 column.append(constituent)
         limit -= 1
-        constituentsColumns.append(column)
-    return constituentsColumns
+        constituentsRows.append(column)
+    return constituentsRows
+
+
+"""
+[['s',      'u',     'c',    'e'],				    4
+ ['su',     'uc',    'cc',   'ce',  'es', 'ss'],	6
+ ['suc',    'ucc',   'cce',  'ces', 'ess'],		    5
+ ['succ',   'ucce',  'cces', 'cess'],			    4
+ ['succe',  'ucces', 'ccess'],				        3					        2
+ ['succes', 'uccess'],						        2
+ ['success']]							            1
+"""
+
+
+def reverseListOfLists(listOfLists):
+    maxColumnNum, sublistsLengths = findMaxColumnNumAndLenOfRowSublists(listOfLists)
+
+    # gets the length of every column
+    lengthsOfColumns = []
+    for columnNum in range(maxColumnNum):
+        passedACell = False
+        rowNum = 0
+        numberOfCellsInTheColumn = 0
+        while True:
+            try:
+                cellValue = listOfLists[rowNum][columnNum]
+                passedACell = True
+                numberOfCellsInTheColumn += 1
+                rowNum += 1
+            except IndexError:
+                if not passedACell:
+                    continue
+                else:
+                    break
+        lengthsOfColumns.append(numberOfCellsInTheColumn)
+    return lengthsOfColumns
+
+
+
+
+def findMaxColumnNumAndLenOfRowSublists(listOfLists):
+    maxColumnNum = 0
+    sublistsLengths = []
+    for sublist in listOfLists:
+        columnNum = len(sublist)
+        sublistsLengths.append(columnNum)
+        if columnNum > maxColumnNum:
+            maxColumnNum = columnNum
+
+    return maxColumnNum, sublistsLengths
+
 
 
 def sortAlphabetically(word):
@@ -70,6 +120,17 @@ def sortAlphabetically(word):
         wordList.pop(0)
     alphaSortedNoDuplicates = "".join(alphaSortedNoDuplicates)
     return alphaSorted, alphaSortedNoDuplicates
+
+
+def getNumberOfLettersUnique(word):
+    wordList = list(word)
+    wordLettersNoDuplicates = []
+    while wordList:
+        if wordList[0] not in wordLettersNoDuplicates:
+            wordLettersNoDuplicates += wordList[0]
+        wordList.pop(0)
+    wordNoDuplicateLetters = "".join(wordLettersNoDuplicates)
+    return len(wordNoDuplicateLetters)
 
 
 def wordIsAmbiguous(word):  # ambiguous words are those that can be feminine or masculine (ex. akitba-bo)

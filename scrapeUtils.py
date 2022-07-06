@@ -268,8 +268,9 @@ def pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm):
         tagalogExceptionWordsValues = (word, category, verbBaseForm)
         tagalogExceptionWordsSQL = \
             f"INSERT INTO tagalog_exception_words (word, category, verb_base_form) VALUES ({buildColumnParametersPlaceholders(len(tagalogExceptionWordsValues))})"
-        cur.execute(tagalogExceptionWordsValues, tagalogExceptionWordsSQL)
-        conn.commit()
+    cur.execute(tagalogExceptionWordsSQL, tagalogExceptionWordsValues)
+    conn.commit()
+    print(f"   --->>  \"{word}\" set aside to the `exception_words` table")
 
 
 def pushToDatabases(conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word, category, verbBaseForm,  wordLength,

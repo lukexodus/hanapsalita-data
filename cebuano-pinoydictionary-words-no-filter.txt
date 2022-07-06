@@ -14544,7 +14544,7 @@ kasuno
 kasunod
 kasusian
 kasuutan
-kasuutang pantrabaho
+kasuutang pantrabaho  ~~continue here
 kasuwailan
 kasuwitikan
 kasuy

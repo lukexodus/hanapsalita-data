@@ -2461,3 +2461,105 @@ Traceback (most recent call last):
   File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\ssl.py", line 1099, in read
     return self._sslobj.read(len, buffer)
 KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 20:16:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 258, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 137, in getContent
+    pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 271, in pushToExceptionWordsTable
+    cur.execute(tagalogExceptionWordsValues, tagalogExceptionWordsSQL)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 257, in execute
+    prepared = self._cnx.prepare_for_mysql(params)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 698, in prepare_for_mysql
+    raise errors.ProgrammingError(
+mysql.connector.errors.ProgrammingError: Could not process parameters: str(INSERT INTO tagalog_exception_words (word, category) VALUES (%s, %s)), it must be of type list, tuple or dict
+
+~~~~~~~~~~~~~~~ 2022/07/06 20:28:37 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 259, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 165, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 325, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 281, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 230, in pushToMySQL
+    conn.commit()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 425, in commit
+    self._cmysql.commit()
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 20:43:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 259, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 155, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 325, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 281, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 189, in pushToMySQL
+    cur.execute(tagalogStartStrictSQL, tagalogStartStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 20:46:58 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 260, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 156, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 325, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 281, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 229, in pushToMySQL
+    cur.execute(tagalogContainStrictSQL, tagalogConstituentsRowValuesStrict)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 21:17:25 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 260, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 156, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 325, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 281, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 183, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/06 21:18:42 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 260, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 156, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 325, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 281, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 202, in pushToMySQL
+    cur.execute(tagalogEndStrictSQL, tagalogEndStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt

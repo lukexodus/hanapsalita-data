@@ -770,7 +770,6 @@ CONSTRAINT tagalog_contain_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_words
 );
 
 CREATE TABLE tagalog_exception_words (
-id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 word VARCHAR(60) NOT NULL UNIQUE,
 category VARCHAR(3) NOT NULL,
 verb_base_form VARCHAR(60) DEFAULT NULL,
@@ -778,7 +777,7 @@ verb_base_form VARCHAR(60) DEFAULT NULL,
 INDEX (word),
 INDEX (category(2)),
 INDEX (verb_base_form)
-) AUTO_INCREMENT = 100000;
+);
 
 DESCRIBE tagalog_start_not_strict;
 DESCRIBE tagalog_start_strict;
@@ -789,14 +788,14 @@ DESCRIBE tagalog_contain_strict;
 DESCRIBE tagalog_words;
 DESCRIBE tagalog_exception_words;
 
-DROP TABLE tagalog_start_not_strict;
-DROP TABLE tagalog_start_strict;
-DROP TABLE tagalog_end_not_strict;
-DROP TABLE tagalog_end_strict;
-DROP TABLE tagalog_contain_not_strict;
-DROP TABLE tagalog_contain_strict;
-DROP TABLE tagalog_words;
-DROP TABLE tagalog_exception_words;
+-- DROP TABLE tagalog_start_not_strict;
+-- DROP TABLE tagalog_start_strict;
+-- DROP TABLE tagalog_end_not_strict;
+-- DROP TABLE tagalog_end_strict;
+-- DROP TABLE tagalog_contain_not_strict;
+-- DROP TABLE tagalog_contain_strict;
+-- DROP TABLE tagalog_words;
+-- DROP TABLE tagalog_exception_words;
 
 SELECT * FROM tagalog_start_not_strict;
 SELECT * FROM tagalog_start_strict;

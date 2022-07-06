@@ -97,6 +97,9 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
         category = "NV"  # Non-Verb
 
         conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
+        conjWithSubjectRegex = re.compile(r".*\((.*)\(.*v\., inf\.", re.DOTALL)
+        firstWordRegex = re.compile(r"^(\w*?) ")
+        hasOnlyAWordOutsideTheParenthesisRegex = re.compile(r"^(\w*) \(.*\)")
         definition = result.find("div", class_="definition").get_text()
         conjugationsRaw = conjRegex.search(definition)
         if conjugationsRaw is not None:
@@ -107,11 +110,34 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
 
         feminineVariation, masculineVariation = wordIsAmbiguous(word)
 
-        if " " in word or "." in word:
-            continue
+        # if the word is a verb and has a subject or an adverb (ex. "amirulan ang labada")
+        if " " in word and conjugationsRaw is not None:
+            # gets only the first word or the verb
+            word = firstWordRegex.search(word).group(1)
+            verbBaseForm = word
+
+            if not wordAlreadyStored(cur, "tagalog_words", word):
+                lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+                                        verbBaseForm)
+
+            conjugationsRaw = conjWithSubjectRegex.search(definition)
+            conjugationsRawList = conjugationsRaw.group(1).split(",")
+            conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
+
+            category = "C"  # Conjugation
+            for conjugation in conjugationsList:
+                if not wordAlreadyStored(cur, "tagalog_words", conjugation):
+                    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+                                            category, verbBaseForm)
+        elif hasOnlyAWordOutsideTheParenthesisRegex.search(word) is not None:
+            word = firstWordRegex.search(word).group(1)
+            if not wordAlreadyStored(cur, "tagalog_words", word):
+                lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+                                        verbBaseForm)
         elif wordHasUnexpectedCharacters(word):
             if not wordAlreadyStored(cur, "tagalog_exception_words", word):
                 pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm)
+        # if the word is ambiguous (ex. aktiba-bo)
         elif feminineVariation is not None:
             if not wordAlreadyStored(cur, "tagalog_words", feminineVariation):
                 lastRowID = processWord(feminineVariation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,

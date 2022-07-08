@@ -1,5 +1,5 @@
 CREATE TABLE tagalog_words (
-id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+id MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 word VARCHAR(60) NOT NULL UNIQUE,
 length TINYINT UNSIGNED NOT NULL,
 category VARCHAR(3) NOT NULL,
@@ -19,8 +19,22 @@ INDEX (alpha_sorted_no_duplicates_not_strict),
 INDEX (alpha_sorted_no_duplicates_strict)
 );
 
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_start_not_strict MODIFY id MEDIUMINT UNSIGNED;
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_start_strict MODIFY id MEDIUMINT UNSIGNED;
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_end_not_strict MODIFY id MEDIUMINT UNSIGNED;
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_end_strict MODIFY id MEDIUMINT UNSIGNED;
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_contain_not_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
+SET FOREIGN_KEY_CHECKS=0; 
+ALTER TABLE tagalog_contain_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
+SET FOREIGN_KEY_CHECKS=1;
+
 CREATE TABLE tagalog_start_not_strict (
-id SMALLINT UNSIGNED PRIMARY KEY,
+id MEDIUMINT UNSIGNED PRIMARY KEY,
 1s_ns CHAR(1) DEFAULT NULL,
 2s_ns CHAR(2) DEFAULT NULL,
 3s_ns CHAR(3) DEFAULT NULL,
@@ -145,7 +159,7 @@ CONSTRAINT tagalog_start_not_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_wor
 );
 
 CREATE TABLE tagalog_start_strict (
-id SMALLINT UNSIGNED PRIMARY KEY,
+id MEDIUMINT UNSIGNED PRIMARY KEY,
 1s_s CHAR(1) DEFAULT NULL,
 2s_s CHAR(2) DEFAULT NULL,
 3s_s CHAR(3) DEFAULT NULL,
@@ -270,7 +284,7 @@ CONSTRAINT tagalog_start_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_words(i
 );
 
 CREATE TABLE tagalog_end_not_strict (
-id SMALLINT UNSIGNED PRIMARY KEY,
+id MEDIUMINT UNSIGNED PRIMARY KEY,
 1e_ns CHAR(1) DEFAULT NULL,
 2e_ns CHAR(2) DEFAULT NULL,
 3e_ns CHAR(3) DEFAULT NULL,
@@ -395,7 +409,7 @@ CONSTRAINT tagalog_end_not_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_words
 );
 
 CREATE TABLE tagalog_end_strict (
-id SMALLINT UNSIGNED PRIMARY KEY,
+id MEDIUMINT UNSIGNED PRIMARY KEY,
 1e_s CHAR(1) DEFAULT NULL,
 2e_s CHAR(2) DEFAULT NULL,
 3e_s CHAR(3) DEFAULT NULL,
@@ -520,7 +534,7 @@ CONSTRAINT tagalog_end_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_words(id)
 );
 
 CREATE TABLE tagalog_contain_not_strict (
-id SMALLINT UNSIGNED NOT NULL,
+id MEDIUMINT UNSIGNED NOT NULL,
 1c_ns CHAR(1) DEFAULT NULL,
 2c_ns CHAR(2) DEFAULT NULL,
 3c_ns CHAR(3) DEFAULT NULL,
@@ -645,7 +659,7 @@ CONSTRAINT tagalog_contain_not_strict_id_fk FOREIGN KEY(id) REFERENCES tagalog_w
 );
 
 CREATE TABLE tagalog_contain_strict (
-id SMALLINT UNSIGNED NOT NULL,
+id MEDIUMINT UNSIGNED NOT NULL,
 1c_s CHAR(1) DEFAULT NULL,
 2c_s CHAR(2) DEFAULT NULL,
 3c_s CHAR(3) DEFAULT NULL,
@@ -817,5 +831,10 @@ SELECT * FROM tagalog_exception_words;
 -- SET FOREIGN_KEY_CHECKS=1; 
 -- TRUNCATE TABLE tagalog_exception_words;
 
--- DELETE FROM tagalog_words WHERE id=1920;
+-- DELETE FROM tagalog_words WHERE id=65942;
 -- SELECT word FROM tagalog_words WHERE word='Asyano';
+SELECT id, word FROM tagalog_words WHERE word='pulilya';
+SELECT 10c_s FROM tagalog_contain_strict WHERE id=65941;
+SELECT 10e_s FROM tagalog_end_strict WHERE id=65941;
+SELECT 10s_s FROM tagalog_start_strict WHERE id=65941;
+SELECT id, word FROM tagalog_words WHERE ID=65941;

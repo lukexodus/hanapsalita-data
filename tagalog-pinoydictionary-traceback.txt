@@ -2650,3 +2650,360 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
     self._cmysql.query(query,
 KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 12:03:54 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4266)' at line 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 132, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 259, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4266)' at line 1
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:03:46 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 264, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 116, in getContent
+    elif " " in word and ")" in conjugationsRaw.group(1):
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:06:44 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 267, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 163, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 307, in pushToMySQL
+    cur.execute(tagalogContainStrictSQL, tagalogConstituentsRowValuesStrict)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:13:40 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4289)' at line 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 138, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 259, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4289)' at line 1
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:19:23 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4290)' at line 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 138, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 259, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ') VALUES (4290)' at line 1
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:20:10 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_39_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:22:30 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 113, in getContent
+    if not word:
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 113, in getContent
+    if not word:
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_39_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:34:05 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 268, in <module>
+    stoppedAt = pageNum
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 124, in getContent
+    # gets only the first word or the verb
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 124, in getContent
+    # gets only the first word or the verb
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_trace_dispatch.py", line 56, in trace_dispatch
+    def trace_dispatch(py_db, frame, event, arg):
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1329, in _pydevd_bundle.pydevd_cython_win32_39_64.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_39_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 13:42:27 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 269, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 133, in getContent
+    conjugationsRawList = conjugationsRaw.group(1).split(",")
+AttributeError: 'NoneType' object has no attribute 'group'
+
+~~~~~~~~~~~~~~~ 2022/07/08 14:18:43 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 269, in <module>
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 97, in getContent
+    category = "NV"  # Non-Verb
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 97, in getContent
+    category = "NV"  # Non-Verb
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 17:04:52 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 271, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 177, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 365, in pushToDatabases
+    pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 337, in pushToJSON
+    file.write(json.dumps(jsonDatabase))
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 20:16:29 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 276, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\util\retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\packages\six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 1347, in getresponse
+    response.begin()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python39\lib\http\client.py", line 276, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 267, in <module>
+    bs = getPage(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 42, in getPage
+    req = requests.get(url)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\requests\adapters.py", line 547, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+~~~~~~~~~~~~~~~ 2022/07/08 23:24:29 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Out of range value for column 'id' at row 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 271, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 167, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 249, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.DataError: 167 (22003): Out of range value for column 'id' at row 1
+
+~~~~~~~~~~~~~~~ 2022/07/08 23:37:14 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Out of range value for column 'id' at row 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 271, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 167, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 249, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.DataError: 167 (22003): Out of range value for column 'id' at row 1
+
+~~~~~~~~~~~~~~~ 2022/07/08 23:54:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+_mysql_connector.MySQLInterfaceError: Out of range value for column 'id' at row 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 271, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 167, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 249, in pushToMySQL
+    cur.execute(tagalogWordsSQL, tagalogWordsValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 540, in cmd_query
+    raise errors.get_mysql_exception(exc.errno, msg=exc.msg,
+mysql.connector.errors.DataError: 167 (22003): Out of range value for column 'id' at row 1
+
+~~~~~~~~~~~~~~~ 2022/07/09 01:06:14 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 271, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 167, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 265, in pushToMySQL
+    cur.execute(tagalogStartStrictSQL, tagalogStartStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt

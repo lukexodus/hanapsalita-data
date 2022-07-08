@@ -114,6 +114,13 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
             continue
         # if the word is a verb and has a subject or an adverb (ex. "amirulan ang labada")
         elif " " in word and conjugationsRaw is not None:
+            # if the word entry has an adverb or any word before the verb
+            # ex. in its definition "biglang pumasok ((biglang) pumapasok, pumasok, papasok) v., inf."
+            if ")" in conjugationsRaw.group(1):
+                if not wordAlreadyStored(cur, "tagalog_exception_words", word):
+                    pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm)
+                continue
+
             # gets only the first word or the verb
             word = firstWordRegex.search(word).group(1)
             verbBaseForm = word
@@ -123,6 +130,8 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
                                         verbBaseForm)
 
             conjugationsRaw = conjWithSubjectRegex.search(definition)
+            if conjugationsRaw is None:
+                conjugationsRaw = conjRegex.search(definition)
             conjugationsRawList = conjugationsRaw.group(1).split(",")
             conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
 

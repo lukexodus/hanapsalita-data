@@ -362,11 +362,11 @@ def pushToDatabases(conn, cur, jsonDatabase, wordsJsonFilename, lastRowId, word,
                             startingsWithoutPunctuations, endingsWithoutPunctuations,
                             constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
                             constituentsRowsWithPunctuations)
-    pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, verbBaseForm, wordLength, withPunctuations,
-               alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
-               alphaSortedNoDuplicatesWithPunctuations, startingsWithoutPunctuations, endingsWithoutPunctuations,
-               constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
-               constituentsRowsWithPunctuations)
+    # pushToJSON(jsonDatabase, wordsJsonFilename, lastRowID, word, category, verbBaseForm, wordLength, withPunctuations,
+    #            alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,
+    #            alphaSortedNoDuplicatesWithPunctuations, startingsWithoutPunctuations, endingsWithoutPunctuations,
+    #            constituentsRowsWithoutPunctuations, startingsWithPunctuations, endingsWithPunctuations,
+    #            constituentsRowsWithPunctuations)
     print(word)
     return lastRowID
 

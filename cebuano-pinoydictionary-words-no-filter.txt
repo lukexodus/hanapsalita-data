@@ -29,17 +29,12 @@ abanikuhan
 abanikuhin
 abano
 abante
-Abante!
 abasto
 abat
 abatan
 abatan
 abay
 abay
-abay (mga -)
-abay na babae
-abay na lalaki
-abay na pandangal
 abayan
 abdikasyon
 abelyana
@@ -76,11 +71,6 @@ aborsiyon
 abot
 abot
 abot
-abot ng isang kabisa
-abot ng isip
-abot ng mata
-abot ng tanaw
-abot ng tingin
 abot-dinig
 abot-isip
 abot-tanaw
@@ -131,7 +121,6 @@ abusero
 abuso
 abusuhin
 abut-abot
-abut-abot na paninigarilyo
 abutan
 abutan
 abutan
@@ -160,7 +149,6 @@ adhikain
 adhikain
 adik
 adikto
-adisyon, adisyon
 adisyunal
 Adiyos
 adlaw
@@ -169,7 +157,6 @@ administrasyon
 admiral
 adobe
 adobo
-adobong palaka
 adolesens
 adolesent
 adopsyon
@@ -201,7 +188,6 @@ agad
 agad-agad
 agahan
 agahan
-agahas, agahas
 agam-agam
 agam-agamin
 agamagam
@@ -211,8 +197,6 @@ agap
 agapan
 agapay
 agapayanan
-agapayang kabit
-agapayang salikop
 agaran
 agarin
 agas
@@ -229,7 +213,6 @@ agawan
 agawin
 agay-ay
 agham
-agham politiko
 aghimo
 aghimuan
 aghimuin
@@ -295,7 +278,6 @@ agwardyente
 agwas
 agwasa
 agwat
-agwat ng liko
 agwatan
 agwatyempo
 ahas
@@ -304,7 +286,6 @@ ahedres
 ahensiya
 ahensiya-de-empenyos
 ahente
-ahente sa seguro
 ahin
 ahit
 ahitan
@@ -312,7 +293,6 @@ ahitin
 ahon
 ahunan
 ahunin
-aing. aing
 aising
 akademika
 akademiko
@@ -349,7 +329,6 @@ aklasan
 aklat
 aklat-talaan
 aklatan
-aklatang nagpapahiram
 aklimatado
 akma
 akma
@@ -359,8 +338,6 @@ akme
 akne
 ako
 ako
-ako mismo
-ako na rin
 akompanya
 akompanyador
 akompanyahan
@@ -436,7 +413,6 @@ alaga
 alagaan
 alagaan
 alagad
-alagad ng batas
 alagain
 alagang-alaga
 alagata
@@ -457,17 +433,13 @@ alala
 alalad
 alalahanin
 alalaon
-alalaong baga'y
 alalawa
 alalay
 alalay
 alalayan
-alam na alam
-alam, alam
 alamaam
 alamang
 alamat
-alamat (mga -)
 alambre
 alambrera
 alamid
@@ -476,7 +448,6 @@ alampay
 alampayan
 alan
 alang-alang
-alang-alang sa
 alangaang
 alangan
 alanganin
@@ -578,7 +549,6 @@ alimurahin
 alimuwang
 alimwang
 alin
-alin man
 alinagnag
 alindog
 alingaling
@@ -586,10 +556,8 @@ alingasaw
 alingasngas
 alingawngaw
 alinlangan
-alinma'y hindi
 alinman
 alinsangan
-alinsunod sa/kay
 alinsunuran
 alinsunurin
 alintana
@@ -615,12 +583,8 @@ alis-is
 alisaga
 alisagsag
 alisan
-alisan ng laman
-alisan ng mana
 alisangsang
 alisin
-alisin sa pagkakaimpake
-alisin sa tungkulin
 alisis
 alisto
 alit
@@ -725,7 +689,6 @@ alumpihit
 alun-alon
 alunan
 alunig
-aluniging kidkid
 alupihan
 alusitha
 alusithain
@@ -740,7 +703,6 @@ alyen
 am
 ama
 ama
-ama ng tahanan
 ama-amahan
 amag
 amagin
@@ -751,7 +713,6 @@ amak
 amak
 amakin
 amang
-amang pangaman
 amang-panguman
 amanos
 amapola
@@ -796,7 +757,6 @@ amil
 amilyaramyento
 amin
 amina
-aming sarili
 aminin
 amiray
 amirol

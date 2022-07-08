@@ -2563,3 +2563,90 @@ Traceback (most recent call last):
   File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
     self._cmysql.query(query,
 KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 11:01:12 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 158, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 298, in pushToMySQL
+    firstValueInListLength = len(constituentsRowsWithoutPunctuations[i][0])
+IndexError: list index out of range
+
+~~~~~~~~~~~~~~~ 2022/07/08 11:08:50 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 158, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 298, in pushToMySQL
+    firstValueInListLength = len(constituentsRowsWithoutPunctuations[i][0])
+IndexError: list index out of range
+
+~~~~~~~~~~~~~~~ 2022/07/08 11:18:56 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:/Users/admin/PycharmProjects/hanapsalita-data/tagalog-pinoydictionary-scrape.py", line 158, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 286, in pushToMySQL
+    f"INSERT INTO tagalog_contain_not_strict (id, {buildColumnParameters(rowLength, 'c_ns', firstValueInListLength)}) VALUES ({buildColumnParametersPlaceholders(rowLength + 1)})"
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 286, in pushToMySQL
+    f"INSERT INTO tagalog_contain_not_strict (id, {buildColumnParameters(rowLength, 'c_ns', firstValueInListLength)}) VALUES ({buildColumnParametersPlaceholders(rowLength + 1)})"
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1155, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2022.1.3\plugins\python-ce\helpers\pydev\pydevd.py", line 1170, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 11:19:31 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 158, in getContent
+    lastRowID = processWord(word, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID, category,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 308, in pushToMySQL
+    conn.commit()
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 425, in commit
+    self._cmysql.commit()
+KeyboardInterrupt
+
+~~~~~~~~~~~~~~~ 2022/07/08 11:35:33 ~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 262, in <module>
+    lastRowId = getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\tagalog-pinoydictionary-scrape.py", line 168, in getContent
+    lastRowID = processWord(conjugation, conn, cur, jsonDatabase, wordsJsonFilename, lastRowID,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 403, in processWord
+    lastRowID = pushToDatabases(*variablesToBePushed)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 359, in pushToDatabases
+    lastRowID = pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\scrapeUtils.py", line 259, in pushToMySQL
+    cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\cursor_cext.py", line 269, in execute
+    result = self._cnx.cmd_query(stmt, raw=self._raw,
+  File "C:\Users\admin\PycharmProjects\hanapsalita-data\venv\lib\site-packages\mysql\connector\connection_cext.py", line 535, in cmd_query
+    self._cmysql.query(query,
+KeyboardInterrupt

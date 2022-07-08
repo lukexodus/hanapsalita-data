@@ -110,8 +110,10 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
 
         feminineVariation, masculineVariation = wordIsAmbiguous(word)
 
+        if not word:
+            continue
         # if the word is a verb and has a subject or an adverb (ex. "amirulan ang labada")
-        if " " in word and conjugationsRaw is not None:
+        elif " " in word and conjugationsRaw is not None:
             # gets only the first word or the verb
             word = firstWordRegex.search(word).group(1)
             verbBaseForm = word

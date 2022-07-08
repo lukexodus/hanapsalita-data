@@ -45,13 +45,27 @@ def getConstituents(word):
     constituentsRows = []
 
     limit = wordLength
-    # this list of lists will be in reverse dimension (i.e. (y, x) instead of (x, y))
-    # since it will be inputted to a database
     for step in range(limit):
         column = []
         for chunkLen in range(1, wordLength + 1):
             constituent = word[step:step+chunkLen]
             if constituent not in column:  # avoid going beyond the length of the word
+                column.append(constituent)
+        limit -= 1
+        constituentsRows.append(column)
+    return constituentsRows
+
+
+def getConstituentsExcludingDuplicatesInReverseDimension(word):
+    wordLength = len(word)
+    constituentsRows = []
+
+    limit = wordLength
+    for chunkLen in range(1, wordLength + 1):
+        column = []
+        for step in range(limit):
+            constituent = word[step:step+chunkLen]
+            if constituent not in column:  # exclude duplicates
                 column.append(constituent)
         limit -= 1
         constituentsRows.append(column)
@@ -70,42 +84,41 @@ def getConstituents(word):
 
 
 def reverseListOfLists(listOfLists):
-    maxColumnNum, sublistsLengths = findMaxColumnNumAndLenOfRowSublists(listOfLists)
+    maxColumnNum = findMaxColumnNumOfListOfLists(listOfLists)
 
     # gets the length of every column
     lengthsOfColumns = []
+    swappedDimensionsList = []
     for columnNum in range(maxColumnNum):
+        swappedDimensionsList.append(list())
         passedACell = False
         rowNum = 0
         numberOfCellsInTheColumn = 0
         while True:
             try:
                 cellValue = listOfLists[rowNum][columnNum]
+                swappedDimensionsList[columnNum].append(cellValue)
                 passedACell = True
                 numberOfCellsInTheColumn += 1
                 rowNum += 1
             except IndexError:
                 if not passedACell:
+                    rowNum += 1
                     continue
                 else:
                     break
         lengthsOfColumns.append(numberOfCellsInTheColumn)
-    return lengthsOfColumns
+    return swappedDimensionsList
 
 
-
-
-def findMaxColumnNumAndLenOfRowSublists(listOfLists):
+def findMaxColumnNumOfListOfLists(listOfLists):
     maxColumnNum = 0
-    sublistsLengths = []
     for sublist in listOfLists:
         columnNum = len(sublist)
-        sublistsLengths.append(columnNum)
         if columnNum > maxColumnNum:
             maxColumnNum = columnNum
 
-    return maxColumnNum, sublistsLengths
-
+    return maxColumnNum
 
 
 def sortAlphabetically(word):
@@ -178,17 +191,19 @@ def purifyWord(word):
 
 
 # SQL queries-related functions
-def buildColumnParameters(wordLength, part):
-    """ part -> `s` (start), `e` (end), `c` (contain)"""
+def buildColumnParameters(rowLength, part, startAt):
+    """ part -> `s_ns` (*_start_not_strict), `c_s` (*_contain_strict), ..."""
     parameters = ""
-    for i in range(wordLength):
-        parameters += f", {i+1}{part}"
+    columnNum = startAt
+    for i in range(rowLength):
+        parameters += f", {columnNum}{part}"
+        columnNum += 1
     return parameters[2:]
 
 
-def buildColumnParametersPlaceholders(wordLength):
+def buildColumnParametersPlaceholders(rowLength):
     placeholders = ""
-    for i in range(wordLength):
+    for i in range(rowLength):
         placeholders += ", %s"
     return placeholders[2:]
 
@@ -240,34 +255,35 @@ def pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, 
     # tagalog_start_*
     tagalogStartNotStrictValues = [lastRowId1] + startingsWithoutPunctuations
     tagalogStartNotStrictSQL = \
-        f"INSERT INTO tagalog_start_not_strict (id, {buildColumnParameters(len(tagalogStartNotStrictValues) - 1, 's_ns')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartNotStrictValues))})"
+        f"INSERT INTO tagalog_start_not_strict (id, {buildColumnParameters(len(tagalogStartNotStrictValues) - 1, 's_ns', 1)}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartNotStrictValues))})"
     cur.execute(tagalogStartNotStrictSQL, tagalogStartNotStrictValues)
     conn.commit()
 
     tagalogStartStrictValues = [lastRowId1] + startingsWithPunctuations
     tagalogStartStrictSQL = \
-        f"INSERT INTO tagalog_start_strict (id, {buildColumnParameters(len(tagalogStartStrictValues) - 1, 's_s')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartStrictValues))})"
+        f"INSERT INTO tagalog_start_strict (id, {buildColumnParameters(len(tagalogStartStrictValues) - 1, 's_s', 1)}) VALUES ({buildColumnParametersPlaceholders(len(tagalogStartStrictValues))})"
     cur.execute(tagalogStartStrictSQL, tagalogStartStrictValues)
     conn.commit()
 
     # tagalog_end_*
     tagalogEndNotStrictValues = [lastRowId1] + endingsWithoutPunctuations
     tagalogEndNotStrictSQL = \
-        f"INSERT INTO tagalog_end_not_strict (id, {buildColumnParameters(len(tagalogEndNotStrictValues) - 1, 'e_ns')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndNotStrictValues))})"
+        f"INSERT INTO tagalog_end_not_strict (id, {buildColumnParameters(len(tagalogEndNotStrictValues) - 1, 'e_ns', 1)}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndNotStrictValues))})"
     cur.execute(tagalogEndNotStrictSQL, tagalogEndNotStrictValues)
     conn.commit()
 
     tagalogEndStrictValues = [lastRowId1] + endingsWithPunctuations
     tagalogEndStrictSQL = \
-        f"INSERT INTO tagalog_end_strict (id, {buildColumnParameters(len(tagalogEndStrictValues) - 1, 'e_s')}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndStrictValues))})"
+        f"INSERT INTO tagalog_end_strict (id, {buildColumnParameters(len(tagalogEndStrictValues) - 1, 'e_s', 1)}) VALUES ({buildColumnParametersPlaceholders(len(tagalogEndStrictValues))})"
     cur.execute(tagalogEndStrictSQL, tagalogEndStrictValues)
     conn.commit()
 
     # tagalog_contain_*
     for i, constituentsRow, in enumerate(constituentsRowsWithoutPunctuations):
-        columnLength = len(constituentsRowsWithoutPunctuations[i])
+        rowLength = len(constituentsRowsWithoutPunctuations[i])
+        firstValueInListLength = len(constituentsRowsWithoutPunctuations[i][0])
         tagalogContainNotStrictSQL = \
-            f"INSERT INTO tagalog_contain_not_strict (id, {buildColumnParameters(columnLength, 'c_ns')}) VALUES ({buildColumnParametersPlaceholders(columnLength + 1)})"
+            f"INSERT INTO tagalog_contain_not_strict (id, {buildColumnParameters(rowLength, 'c_ns', firstValueInListLength)}) VALUES ({buildColumnParametersPlaceholders(rowLength + 1)})"
 
         tagalogConstituentsRowValuesNotStrict = [lastRowId1]
         for j, constituent in enumerate(constituentsRow):
@@ -276,11 +292,12 @@ def pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, 
 
         cur.execute(tagalogContainNotStrictSQL, tagalogConstituentsRowValuesNotStrict)
         conn.commit()
-
+    constituentsRowsWithPunctuations
     for i, constituentsRow, in enumerate(constituentsRowsWithPunctuations):
-        columnLength = len(constituentsRowsWithPunctuations[i])
+        rowLength = len(constituentsRowsWithPunctuations[i])
+        firstValueInListLength = len(constituentsRowsWithPunctuations[i][0])
         tagalogContainStrictSQL = \
-            f"INSERT INTO tagalog_contain_strict (id, {buildColumnParameters(columnLength, 'c_s')}) VALUES ({buildColumnParametersPlaceholders(columnLength + 1)})"
+            f"INSERT INTO tagalog_contain_strict (id, {buildColumnParameters(rowLength, 'c_s', firstValueInListLength)}) VALUES ({buildColumnParametersPlaceholders(rowLength + 1)})"
 
         tagalogConstituentsRowValuesStrict = [lastRowId1]
         for j, constituent in enumerate(constituentsRow):
@@ -367,10 +384,10 @@ def getInfoFromWord(word):
     alphaSortedWithoutPunctuations, alphaSortedNoDuplicatesWithoutPunctuations = sortAlphabetically(wordPurified)
 
     startingsWithoutPunctuations, endingsWithoutPunctuations = getStartings(wordPurified), getEndings(wordPurified)
-    constituentsRowsWithoutPunctuations = getConstituents(wordPurified)
+    constituentsRowsWithoutPunctuations = reverseListOfLists(getConstituentsExcludingDuplicatesInReverseDimension(wordPurified))
 
     startingsWithPunctuations, endingsWithPunctuations = getStartings(wordStrippedAndLowered), getEndings(wordStrippedAndLowered)
-    constituentsRowsWithPunctuations = getConstituents(wordStrippedAndLowered)
+    constituentsRowsWithPunctuations = reverseListOfLists(getConstituentsExcludingDuplicatesInReverseDimension(wordStrippedAndLowered))
 
     return wordLength, withPunctuations, alphaSortedWithoutPunctuations, alphaSortedWithPunctuations,\
         alphaSortedNoDuplicatesWithoutPunctuations, alphaSortedNoDuplicatesWithPunctuations, \

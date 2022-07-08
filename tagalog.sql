@@ -806,15 +806,16 @@ SELECT * FROM tagalog_contain_strict;
 SELECT * FROM tagalog_words;
 SELECT * FROM tagalog_exception_words;
 
-TRUNCATE TABLE tagalog_start_not_strict;
-TRUNCATE TABLE tagalog_start_strict;
-TRUNCATE TABLE tagalog_end_not_strict;
-TRUNCATE TABLE tagalog_end_strict;
-TRUNCATE TABLE tagalog_contain_not_strict;
-TRUNCATE TABLE tagalog_contain_strict;
-SET FOREIGN_KEY_CHECKS=0; 
-TRUNCATE TABLE tagalog_words;
-SET FOREIGN_KEY_CHECKS=1; 
-TRUNCATE TABLE tagalog_exception_words;
+-- TRUNCATE TABLE tagalog_start_not_strict;
+-- TRUNCATE TABLE tagalog_start_strict;
+-- TRUNCATE TABLE tagalog_end_not_strict;
+-- TRUNCATE TABLE tagalog_end_strict;
+-- TRUNCATE TABLE tagalog_contain_not_strict;
+-- TRUNCATE TABLE tagalog_contain_strict;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- TRUNCATE TABLE tagalog_words;
+-- SET FOREIGN_KEY_CHECKS=1; 
+-- TRUNCATE TABLE tagalog_exception_words;
 
--- DELETE FROM tagalog_words WHERE id=2
+-- DELETE FROM tagalog_words WHERE id=1920;
+-- SELECT word FROM tagalog_words WHERE word='Asyano';

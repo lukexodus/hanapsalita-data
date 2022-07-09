@@ -1,7 +1,7 @@
 {
   "language": "Tagalog",
-  "lastRetrievedLetterIndex": 14,
-  "lastRowId": 65922,
+  "lastRetrievedLetterIndex": null,
+  "lastRowId": 78459,
   "a": {
     "lastPageNum": 88,
     "stoppedAt": 88
@@ -60,6 +60,42 @@
   },
   "p": {
     "lastPageNum": 463,
-    "stoppedAt": 435
+    "stoppedAt": 463
+  },
+  "r": {
+    "lastPageNum": 26,
+    "stoppedAt": 26
+  },
+  "s": {
+    "lastPageNum": 146,
+    "stoppedAt": 146
+  },
+  "t": {
+    "lastPageNum": 142,
+    "stoppedAt": 142
+  },
+  "u": {
+    "lastPageNum": 40,
+    "stoppedAt": 40
+  },
+  "w": {
+    "lastPageNum": 21,
+    "stoppedAt": 21
+  },
+  "x": {
+    "lastPageNum": 1,
+    "stoppedAt": 1
+  },
+  "y": {
+    "lastPageNum": 9,
+    "stoppedAt": 9
+  },
+  "z": {
+    "lastPageNum": 1,
+    "stoppedAt": 1
+  },
+  "null": {
+    "lastPageNum": null,
+    "stoppedAt": 1
   }
 }

@@ -831,10 +831,15 @@ SELECT * FROM tagalog_exception_words;
 -- SET FOREIGN_KEY_CHECKS=1; 
 -- TRUNCATE TABLE tagalog_exception_words;
 
--- DELETE FROM tagalog_words WHERE id=65942;
+-- DELETE FROM tagalog_words WHERE id=78457;
 -- SELECT word FROM tagalog_words WHERE word='Asyano';
-SELECT id, word FROM tagalog_words WHERE word='pulilya';
-SELECT 10c_s FROM tagalog_contain_strict WHERE id=65941;
-SELECT 10e_s FROM tagalog_end_strict WHERE id=65941;
-SELECT 10s_s FROM tagalog_start_strict WHERE id=65941;
-SELECT id, word FROM tagalog_words WHERE ID=65941;
+SELECT id, word, category, verb_base_form, alpha_sorted_no_duplicates_not_strict, alpha_sorted_not_strict, alpha_sorted_no_duplicates_strict, alpha_sorted_strict FROM tagalog_words WHERE word='hindi) nakakasalo';
+SELECT 10c_s FROM tagalog_contain_strict WHERE id=78065;
+SELECT 10e_s FROM tagalog_end_strict WHERE id=78065;
+SELECT 10s_s FROM tagalog_start_strict WHERE id=78065;
+SELECT 10c_ns FROM tagalog_contain_not_strict WHERE id=78065;
+SELECT 10e_ns FROM tagalog_end_not_strict WHERE id=78065;
+SELECT 10s_ns FROM tagalog_start_not_strict WHERE id=78065;
+-- SELECT id, word FROM tagalog_words WHERE ID=65941;
+
+-- UPDATE tagalog_words SET verb_base_form="magkaladkad" WHERE word="magkakaladkad";

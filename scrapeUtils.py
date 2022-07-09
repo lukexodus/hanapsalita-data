@@ -218,6 +218,21 @@ def wordAlreadyStored(cur, table, word):
     return False
 
 
+def idAlreadyStored(cur, table, id):
+    cur.execute("SELECT * FROM " + table + " WHERE id=%s", (id,))
+    cur.fetchall()
+    rowCount = cur.rowcount
+    if rowCount != 0:
+        return True
+    return False
+
+
+def getIdOfWord(cur, word):
+    cur.execute("SELECT id FROM tagalog_words WHERE word=%s", (word,))
+    wordId = cur.fetchone()
+    return wordId
+
+
 # main functions
 def pushToMySQL(conn, cur, lastRowId, word, category, verbBaseForm, wordLength, withPunctuations,
                 alphaSortedWithoutPunctuations, alphaSortedWithPunctuations, alphaSortedNoDuplicatesWithoutPunctuations,

@@ -11,7 +11,7 @@ import mysql.connector
 
 from scrapeUtils import pushToDatabases, wordAlreadyStored, getInfoFromWord, wordIsAmbiguous, \
     wordIsInterjection, wordStartsWithCapitalLetter, wordHasUnexpectedCharacters, \
-    pushToExceptionWordsTable, processWord
+    pushToExceptionWordsTable, processWord, idAlreadyStored, getIdOfWord
 
 searchUrl = "https://tagalog.pinoydictionary.com/list/"
 startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
@@ -19,6 +19,8 @@ startLetters = ["a", "b", "c", "d", "e", "g", "h", "i", "j", "k", "l", "m",
 progressJsonFilename = "tagalog-pinoydictionary-progress.json"
 wordsJsonFilename = "tagalog-pinoydictionary-words.json"
 wordGroupSelector = "div.word-group"
+
+currentWord = ""
 
 with open(progressJsonFilename) as file:
     progressJson = json.loads(file.read())
@@ -89,17 +91,21 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
                stoppedAt, lastRowId):
     storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter,
                               lastPageNum, stoppedAt, lastRowId)
+    global currentWord
     lastRowID = lastRowId
     searchResults = bs.select(wordGroupSelector)
     for result in searchResults:
         word = result.find("h2", class_="word-entry").get_text()
         word = word.strip()
+        currentWord = word
         category = "NV"  # Non-Verb
 
         conjRegex = re.compile(r".*\((.*)\).*v\., inf\.", re.DOTALL)
         conjWithSubjectRegex = re.compile(r".*\((.*)\(.*v\., inf\.", re.DOTALL)
-        firstWordRegex = re.compile(r"^(\w*?) ")
-        hasOnlyAWordOutsideTheParenthesisRegex = re.compile(r"^(\w*) \(.*\)")
+        firstWordRegex = re.compile(r"^([A-Za-z\-?!]*) ")
+        hasOnlyAWordOutsideTheParenthesisRegex = re.compile(r"^([A-Za-z\-?!']*) \(.*\)")
+        endsWithClosingParenthesisRegex = re.compile(r"\)$")
+
         definition = result.find("div", class_="definition").get_text()
         conjugationsRaw = conjRegex.search(definition)
         if conjugationsRaw is not None:
@@ -116,12 +122,13 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
         elif " " in word and conjugationsRaw is not None:
             # if the word entry has an adverb or any word before the verb
             # ex. in its definition "biglang pumasok ((biglang) pumapasok, pumasok, papasok) v., inf."
-            if ")" in conjugationsRaw.group(1):
+            if ")" in conjugationsRaw.group(1) and endsWithClosingParenthesisRegex.search(conjugationsRaw.group(1)) is None:
                 if not wordAlreadyStored(cur, "tagalog_exception_words", word):
                     pushToExceptionWordsTable(conn, cur, word, category, verbBaseForm)
                 continue
 
             # gets only the first word or the verb
+            firstWord = firstWordRegex.search(word)
             word = firstWordRegex.search(word).group(1)
             verbBaseForm = word
 
@@ -130,7 +137,7 @@ def getContent(bs, progressJson, progressJsonFilename, lastRetrievedLetterIndex,
                                         verbBaseForm)
 
             conjugationsRaw = conjWithSubjectRegex.search(definition)
-            if conjugationsRaw is None:
+            if conjugationsRaw == "" or conjugationsRaw is None:
                 conjugationsRaw = conjRegex.search(definition)
             conjugationsRawList = conjugationsRaw.group(1).split(",")
             conjugationsList = [conjugation.strip() for conjugation in conjugationsRawList]
@@ -284,6 +291,22 @@ for i in range(lastRetrievedLetterIndex, len(startLetters)):
         print(traceback.format_exc())
         storeProgressStatusToJson(progressJson, progressJsonFilename, lastRetrievedLetterIndex, letter, lastPageNum,
                                   stoppedAt, lastRowId)
+
+        # if the word is not completely stored in all tables,
+        # then deletes the word from the parent table (delete cascades)
+        wordStoredToAllTables = True
+        tableNames = ["tagalog_start_not_strict", "tagalog_start_strict", "tagalog_end_not_strict",
+                      "tagalog_end_strict", "tagalog_contain_not_strict", "tagalog_contain_strict"]
+        if currentWord != "":
+            if wordAlreadyStored(cur, "tagalog_words", currentWord):
+                wordId = getIdOfWord(cur, currentWord)
+                for tableName in tableNames:
+                    if not idAlreadyStored(cur, tableName, wordId):
+                        wordStoredToAllTables = False
+                if not wordStoredToAllTables:
+                    print(f'  --->> "{currentWord}" is not completely stored to all tables. Deleting "{currentWord}" from all tables...')
+                    cur.execute(f"DELETE FROM tagalog_words WHERE id=%s", (wordId,))
+
         cur.close()
         conn.close()
         sys.exit()

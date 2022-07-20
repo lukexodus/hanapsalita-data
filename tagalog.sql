@@ -857,4 +857,4 @@ SELECT * FROM tagalog_contain_not_strict WHERE id=78522;
 # DELETE FROM tagalog_words WHERE id=78666;
 # DELETE FROM tagalog_words WHERE word='di naintindihan';
 
-
+SELECT word, length, category, verb_base_form FROM tagalog_words WHERE id IN (SELECT id FROM tagalog_start_not_strict WHERE 1s_ns='s') ORDER BY length DESC, word;

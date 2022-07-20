@@ -1,0 +1,111 @@
+	ang patay)
+	ang sugat)
+	bumukol. bubukol
+	dadama)
+dadamhin)
+daraig)
+daraing)
+daraya)
+derebatihin)
+	di maiintindihan
+	di naiintindihan
+	di naintindihan
+didiyos)
+diristilahin)
+doromina)
+dorominahin)
+durukal)
+	ginugusto pa
+	ginusto pa
+	gugustuhin pa
+	inanan. aananin
+	ipapabilanggong muli
+	ipinabilanggong muli
+	ipinapabilanggong muli
+	kinasapitan kakasapitan
+	kinulam kukulamin
+magdadabog)
+magdarais)
+magdarait)
+magdaramasko)
+magdarambana)
+magdarasal)
+magdaratig)
+magdarawit)
+magdaraya)
+magdarayaan)
+magderebu)
+magdirieta)
+magdiriit)
+magdirimisyon)
+magdirimiti)
+magdirinamita)
+magdiringas)
+magdiristila)
+magdurukal)
+magdurulok)
+magdurulot)
+magdurumami)
+magdurumi)
+magdururo)
+magdurusa)
+magduruyan)
+	magiging bato
+	magiging kulay-pilak
+	magiging sanhi
+	nagdarayuhan)
+	nagiging bato
+	nagiging kulay-pilak
+	nagiging sanhi
+	naging bato
+	naging kulay-pilak
+	naging sanhi
+	nagkimkim magkikimkim
+	naglihim maglilihim
+	nagsakal. magsasakal
+	nagsangkot magsasangkot
+	nambibintol. nambintol
+	nandusta mandurusta
+	nang marahan)
+	napasagip pasasagip
+	ng sugat)
+	sa alaala/isip)
+	sa sigsikan)
+
+
+"damhin": ["dinarama ", "dinadama", "dinama", "daramhin ", "dadamhin"],
+           "dumaig": ["dumadaig  ", "dumaraig", "dumaig", "dadaig  ", "daraig"],
+           "dumaing": ["dumadaing  ", "dumaraing", "dumaing", "dadaing  ", "daraing"],
+           "dumaya": ["dumadaya  ", "dumaraya", "dumaya", "dadaya  ", "daraya"],
+           "debatihin": ["dinedebate  ", "dinerebate", "dinebate", "dedebatihin  ", "derebatihin"],
+           "dumiyos ": ["dumiriyos  ", "dumidiyos", "dumiyos", "diriyos  ", "didiyos"],
+           "distilahin ": ["dinidistila  ", "diniristila", "dinistila", "didistilahin ", "diristilahin"],
+           "dumomina ": ["dumodomina  ", "dumoromina", "dumomina", "dodomina  ", "doromina"],
+           "dominahin ": ["dinodomina  ", "dinoromina", "dinomina", "dodominahin ", "dorominahin"],
+           "dumukal ": ["dumudukal  ", "dumurukal", "dumukal", "dudukal ", "durukal"],
+           "magdabog ": ["nagdarabog  ", "nagdadabog", "nagdabog", "magdarabog ", "magdadabog"],
+           "magdais ": ["nagdadais  ", "nagdarais", "nagdais", "magdadais ", "magdarais"],
+           "magdait ": ["nagdadait  ", "nagdarait", "nagdait", "magdadait ", "magdarait"],
+           "magdamasko": ["nagdadamasko  ", "nagdaramasko", "nagdamasko", "magdadamasko ", "magdaramasko"],
+           "magdambana ": ["nagdadambana  ", "nagdarambana", "nagdambana", "magdadambana  ", "magdarambana"],
+           "magdasal ": ["nagdadasal  ", "nagdarasal", "nagdasal", "magdadasal ", "magdarasal"],
+           "magdatig": ["nagdadatig  ", "nagdaratig", "nagdatig", "magdadatig  ", "magdaratig"],
+           "magdawit": ["nagdadawit  ", "nagdarawit", "nagdawit", "magdadawit ", "magdarawit"],
+           "magdaya ": ["nagdadaya  ", "nagdaraya", "nagdaya", "magdadaya ", "magdaraya"],
+           "magdayaan ": ["nagdadayaan  ", "nagdarayaan", "nagdayaan", "magdadayaan  ", "magdarayaan"],
+           "magdebu ": ["nagdedebu  ", "nagderebu", "nagdebu", "magdedebu ", "magderebu"],
+           "magdieta": ["nagdidieta  ", "nagdirieta", "nagdieta", "magdidieta  ", "magdirieta"],
+           "magdiit ": ["nagdidiit  ", "nagdiriit", "nagdiit", "magdidiit  ", "magdiriit"],
+           "magdimisyon ": ["nagdidimisyon  ", "nagdirimisyon", "nagdimisyon", "magdidimisyon  ", "magdirimisyon"],
+           "magdimiti ": ["nagdidimiti  ", "nagdirimiti", "nagdimiti", "magdidimiti ", "magdirimiti"],
+           "magdinamita": ["nagdidinamita  ", "nagdirinamita", "nagdinamita", "magdidinamita ", "magdirinamita"],
+           "magdingas": ["nagdidingas  ", "nagdiringas", "nagdingas", "magdidingas ", "magdiringas"],
+           "magdistila ": ["nagdidistila  ", "nagdiristila", "nagdistila", "magdidistila ", "magdiristila"],
+           "magdukal ": ["nagdudukal  ", "nagdurukal", "nagdukal", "magdudukal ", "magdurukal"],
+           "magdulok ": ["nagdudulok  ", "nagdurulok", "nagdulok", "magdudulok ", "magdurulok"],
+           "magdulot": ["nagdudulot  ", "nagdurulot", "nagdulot", "magdudulot ", "magdurulot"],
+           "magdumami": ["nagdudumami  ", "nagdurumami", "nagdumami", "magdudumami ", "magdurumami"],
+           "magdumi ": ["nagdudumi  ", "nagdurumi", "nagdumi", "magdudumi ", "magdurumi"],
+           "magduro ": ["nagduduro  ", "nagdururo", "nagduro", "magduduro ", "magdururo"],
+           "magdusa": ["nagdudusa  ", "nagdurusa", "nagdusa", "magdudusa  ", "magdurusa"],
+           "magduyan": ["nagduduyan  ", "nagduruyan", "nagduyan", "magduduyan ", "magduruyan"]

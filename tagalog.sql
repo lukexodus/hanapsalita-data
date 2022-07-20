@@ -19,19 +19,19 @@ INDEX (alpha_sorted_no_duplicates_not_strict),
 INDEX (alpha_sorted_no_duplicates_strict)
 );
 
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_start_not_strict MODIFY id MEDIUMINT UNSIGNED;
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_start_strict MODIFY id MEDIUMINT UNSIGNED;
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_end_not_strict MODIFY id MEDIUMINT UNSIGNED;
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_end_strict MODIFY id MEDIUMINT UNSIGNED;
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_contain_not_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
-SET FOREIGN_KEY_CHECKS=0; 
-ALTER TABLE tagalog_contain_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
-SET FOREIGN_KEY_CHECKS=1;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_start_not_strict MODIFY id MEDIUMINT UNSIGNED;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_start_strict MODIFY id MEDIUMINT UNSIGNED;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_end_not_strict MODIFY id MEDIUMINT UNSIGNED;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_end_strict MODIFY id MEDIUMINT UNSIGNED;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_contain_not_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
+-- SET FOREIGN_KEY_CHECKS=0; 
+-- ALTER TABLE tagalog_contain_strict MODIFY id MEDIUMINT UNSIGNED NOT NULL;
+-- SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE tagalog_start_not_strict (
 id MEDIUMINT UNSIGNED PRIMARY KEY,
@@ -843,3 +843,18 @@ SELECT 10s_ns FROM tagalog_start_not_strict WHERE id=78065;
 -- SELECT id, word FROM tagalog_words WHERE ID=65941;
 
 -- UPDATE tagalog_words SET verb_base_form="magkaladkad" WHERE word="magkakaladkad";
+
+SELECT COUNT(*) FROM tagalog_words;
+# UPDATE tagalog_words SET word='daramaskuhan';
+SELECT * FROM tagalog_words ORDER BY length;
+SELECT * FROM tagalog_words WHERE verb_base_form='debatihin';
+SELECT * FROM tagalog_words WHERE word='iniwawaglit';
+SELECT * FROM tagalog_words WHERE id=78667;
+SELECT * FROM tagalog_start_not_strict WHERE id=78667;
+SELECT * FROM tagalog_end_not_strict WHERE id=78667;
+SELECT * FROM tagalog_contain_not_strict WHERE id=78522;
+
+# DELETE FROM tagalog_words WHERE id=78666;
+# DELETE FROM tagalog_words WHERE word='di naintindihan';
+
+

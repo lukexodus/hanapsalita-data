@@ -1,6 +1,7 @@
 import json
 import re
 
+
 # string functions
 def getStartings(word):
     startingsWithoutPunctuations = []

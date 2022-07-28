@@ -1,7 +1,7 @@
 import re
 import mysql.connector
 
-conn = mysql.connector.connect(host="127.0.0.1", user="root", password="", database="hanapsalita")
+conn = mysql.connector.connect(host="127.0.0.1", port=3307, user="root", password="", database="hanapsalita")
 cur = conn.cursor()
 
 try:
